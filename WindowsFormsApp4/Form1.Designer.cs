@@ -82,6 +82,10 @@
             this.btnDisconnectCam = new System.Windows.Forms.Button();
             this.btnConnectCam = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnTrainRobotPlace = new System.Windows.Forms.Button();
+            this.btnTrainRobotPick = new System.Windows.Forms.Button();
+            this.btnTrainVisionPlace = new System.Windows.Forms.Button();
+            this.btnTrainVisionPick = new System.Windows.Forms.Button();
             this.btnMoveRobot = new System.Windows.Forms.Button();
             this.btnGetCurPos2 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
@@ -107,9 +111,7 @@
             this.btnZup = new System.Windows.Forms.Button();
             this.btnXdown = new System.Windows.Forms.Button();
             this.btnXup = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -191,7 +193,7 @@
             // 
             this.btnAutoCalib.BackColor = System.Drawing.Color.Lime;
             this.btnAutoCalib.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnAutoCalib.Location = new System.Drawing.Point(229, 481);
+            this.btnAutoCalib.Location = new System.Drawing.Point(362, 388);
             this.btnAutoCalib.Name = "btnAutoCalib";
             this.btnAutoCalib.Size = new System.Drawing.Size(57, 50);
             this.btnAutoCalib.TabIndex = 70;
@@ -202,7 +204,7 @@
             // btnGetCurPos
             // 
             this.btnGetCurPos.BackColor = System.Drawing.Color.IndianRed;
-            this.btnGetCurPos.Location = new System.Drawing.Point(86, 413);
+            this.btnGetCurPos.Location = new System.Drawing.Point(86, 388);
             this.btnGetCurPos.Name = "btnGetCurPos";
             this.btnGetCurPos.Size = new System.Drawing.Size(55, 50);
             this.btnGetCurPos.TabIndex = 69;
@@ -242,13 +244,14 @@
             // 
             // btnClearData
             // 
-            this.btnClearData.Location = new System.Drawing.Point(717, 674);
+            this.btnClearData.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnClearData.Location = new System.Drawing.Point(695, 605);
             this.btnClearData.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearData.Name = "btnClearData";
-            this.btnClearData.Size = new System.Drawing.Size(75, 19);
+            this.btnClearData.Size = new System.Drawing.Size(75, 50);
             this.btnClearData.TabIndex = 65;
             this.btnClearData.Text = "Clear Data";
-            this.btnClearData.UseVisualStyleBackColor = true;
+            this.btnClearData.UseVisualStyleBackColor = false;
             this.btnClearData.Click += new System.EventHandler(this.btnClearData_Click);
             // 
             // btnDisconnectRobot
@@ -352,7 +355,7 @@
             // btnHE
             // 
             this.btnHE.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnHE.Location = new System.Drawing.Point(231, 413);
+            this.btnHE.Location = new System.Drawing.Point(221, 388);
             this.btnHE.Margin = new System.Windows.Forms.Padding(2);
             this.btnHE.Name = "btnHE";
             this.btnHE.Size = new System.Drawing.Size(55, 50);
@@ -677,9 +680,11 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.btnTrainRobotPlace);
+            this.tabPage2.Controls.Add(this.btnTrainRobotPick);
+            this.tabPage2.Controls.Add(this.btnTrainVisionPlace);
+            this.tabPage2.Controls.Add(this.btnTrainVisionPick);
             this.tabPage2.Controls.Add(this.btnMoveRobot);
             this.tabPage2.Controls.Add(this.btnGetCurPos2);
             this.tabPage2.Controls.Add(this.label28);
@@ -713,6 +718,46 @@
             this.tabPage2.Text = "Train Robot";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnTrainRobotPlace
+            // 
+            this.btnTrainRobotPlace.Location = new System.Drawing.Point(376, 212);
+            this.btnTrainRobotPlace.Name = "btnTrainRobotPlace";
+            this.btnTrainRobotPlace.Size = new System.Drawing.Size(78, 45);
+            this.btnTrainRobotPlace.TabIndex = 6;
+            this.btnTrainRobotPlace.Text = "Train Robot Place";
+            this.btnTrainRobotPlace.UseVisualStyleBackColor = true;
+            this.btnTrainRobotPlace.Click += new System.EventHandler(this.btnTrainRobotPlace_Click);
+            // 
+            // btnTrainRobotPick
+            // 
+            this.btnTrainRobotPick.Location = new System.Drawing.Point(147, 212);
+            this.btnTrainRobotPick.Name = "btnTrainRobotPick";
+            this.btnTrainRobotPick.Size = new System.Drawing.Size(79, 45);
+            this.btnTrainRobotPick.TabIndex = 6;
+            this.btnTrainRobotPick.Text = "Train Robot Pick";
+            this.btnTrainRobotPick.UseVisualStyleBackColor = true;
+            this.btnTrainRobotPick.Click += new System.EventHandler(this.btnTrainRobotPick_Click);
+            // 
+            // btnTrainVisionPlace
+            // 
+            this.btnTrainVisionPlace.Location = new System.Drawing.Point(290, 212);
+            this.btnTrainVisionPlace.Name = "btnTrainVisionPlace";
+            this.btnTrainVisionPlace.Size = new System.Drawing.Size(79, 46);
+            this.btnTrainVisionPlace.TabIndex = 6;
+            this.btnTrainVisionPlace.Text = "Train Vision Point (Place)";
+            this.btnTrainVisionPlace.UseVisualStyleBackColor = true;
+            this.btnTrainVisionPlace.Click += new System.EventHandler(this.btnTrainVisionPlace_Click);
+            // 
+            // btnTrainVisionPick
+            // 
+            this.btnTrainVisionPick.Location = new System.Drawing.Point(60, 212);
+            this.btnTrainVisionPick.Name = "btnTrainVisionPick";
+            this.btnTrainVisionPick.Size = new System.Drawing.Size(81, 46);
+            this.btnTrainVisionPick.TabIndex = 6;
+            this.btnTrainVisionPick.Text = "Train Vision Point (Pick)";
+            this.btnTrainVisionPick.UseVisualStyleBackColor = true;
+            this.btnTrainVisionPick.Click += new System.EventHandler(this.btnTrainVisionPick_Click);
+            // 
             // btnMoveRobot
             // 
             this.btnMoveRobot.BackColor = System.Drawing.Color.IndianRed;
@@ -728,7 +773,7 @@
             // 
             this.btnGetCurPos2.Location = new System.Drawing.Point(698, 122);
             this.btnGetCurPos2.Name = "btnGetCurPos2";
-            this.btnGetCurPos2.Size = new System.Drawing.Size(75, 23);
+            this.btnGetCurPos2.Size = new System.Drawing.Size(55, 50);
             this.btnGetCurPos2.TabIndex = 4;
             this.btnGetCurPos2.Text = "Get CurPos";
             this.btnGetCurPos2.UseVisualStyleBackColor = true;
@@ -737,7 +782,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(536, 218);
+            this.label28.Location = new System.Drawing.Point(535, 216);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(21, 13);
             this.label28.TabIndex = 3;
@@ -746,7 +791,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(536, 188);
+            this.label27.Location = new System.Drawing.Point(535, 186);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(20, 13);
             this.label27.TabIndex = 3;
@@ -755,7 +800,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(536, 133);
+            this.label25.Location = new System.Drawing.Point(535, 131);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(20, 13);
             this.label25.TabIndex = 3;
@@ -764,7 +809,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(536, 72);
+            this.label23.Location = new System.Drawing.Point(535, 70);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(14, 13);
             this.label23.TabIndex = 3;
@@ -773,7 +818,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(536, 158);
+            this.label26.Location = new System.Drawing.Point(535, 156);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(20, 13);
             this.label26.TabIndex = 3;
@@ -782,7 +827,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(536, 103);
+            this.label24.Location = new System.Drawing.Point(535, 101);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(14, 13);
             this.label24.TabIndex = 3;
@@ -791,7 +836,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(536, 42);
+            this.label22.Location = new System.Drawing.Point(535, 40);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(14, 13);
             this.label22.TabIndex = 3;
@@ -827,7 +872,7 @@
             // 
             // txtRy2
             // 
-            this.txtRy2.Location = new System.Drawing.Point(559, 152);
+            this.txtRy2.Location = new System.Drawing.Point(559, 154);
             this.txtRy2.Name = "txtRy2";
             this.txtRy2.Size = new System.Drawing.Size(100, 20);
             this.txtRy2.TabIndex = 2;
@@ -951,32 +996,13 @@
             this.btnXup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseDown);
             this.btnXup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseUp);
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(205, 213);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "button1";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(303, 213);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "button1";
-            this.button3.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(60, 269);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(394, 20);
+            this.textBox1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -1077,9 +1103,11 @@
         private System.Windows.Forms.TextBox txtFig;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button btnMoveRobot;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTrainRobotPlace;
+        private System.Windows.Forms.Button btnTrainRobotPick;
+        private System.Windows.Forms.Button btnTrainVisionPick;
+        private System.Windows.Forms.Button btnTrainVisionPlace;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

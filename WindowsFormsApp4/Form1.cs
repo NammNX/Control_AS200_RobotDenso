@@ -67,9 +67,22 @@ namespace WindowsFormsApp4
         }
 
         
+       
+
+
+        private async void btnSend_Click(object sender, EventArgs e)
+        {
+
+            string command = txtCommand.Text.Trim();
+            await cameraController.SendCommand(command);
+            byte[] buffer = new byte[1024];
+            await cameraController.ReceiveData(buffer);
+           
+        }
+
         private async Task RunHE(double minX, double maxX, int stepX, double minY, double maxY, int stepY,
-                                    double minT, double maxT, int stepT, double z, double Rx, double Ry,
-                                    int fig, StringBuilder commandBuilderCam, StringBuilder commandBuilderRobot)
+                                   double minT, double maxT, int stepT, double z, double Rx, double Ry,
+                                   int fig, StringBuilder commandBuilderCam, StringBuilder commandBuilderRobot)
         {
             for (double y = minY; y <= maxY; y += (maxY - minY) / (stepY - 1))
             {
@@ -93,105 +106,90 @@ namespace WindowsFormsApp4
             }
         }
 
-
-        private async void btnSend_Click(object sender, EventArgs e)
+        private async void btnHE_Click(object sender, EventArgs e)
         {
+            btnHE.Enabled = false;
 
-            string command = txtCommand.Text.Trim();
-            await cameraController.SendCommand(command);
-            byte[] buffer = new byte[1024];
-            await cameraController.ReceiveData(buffer);
-            //string receivedDataCam = await ReceiveDataFromCamera(cameraStream, buffer);
+            if (
+            !double.TryParse(txtMinX.Text, out double minX) ||
+            !double.TryParse(txtMaxX.Text, out double maxX) ||
+            !int.TryParse(txtStepX.Text, out int stepX) ||
+            !double.TryParse(txtMinY.Text, out double minY) ||
+            !double.TryParse(txtMaxY.Text, out double maxY) ||
+            !int.TryParse(txtStepY.Text, out int stepY) ||
+            !double.TryParse(txtMinT.Text, out double minT) ||
+            !double.TryParse(txtMaxT.Text, out double maxT) ||
+            !int.TryParse(txtStepT.Text, out int stepT) ||
+            !double.TryParse(txtZ.Text, out double z) ||
+            !double.TryParse(txtRx.Text, out double Rx) ||
+            !double.TryParse(txtRy.Text, out double Ry))
+            {
+                MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            StringBuilder commandBuilderCam = new StringBuilder();
+            StringBuilder commandBuilderRobot = new StringBuilder();
+            int fig = 5; // Gán tư thế robot = 5
+
+            await RunHE(minX, maxX, stepX, minY, maxY, stepY, minT, maxT, stepT, z, Rx, Ry, fig, commandBuilderCam, commandBuilderRobot);
+
+
+            string commandsCam = commandBuilderCam.ToString();
+            string commandsRobot = commandBuilderRobot.ToString();
+
+            Console.WriteLine("commandsCam = " + commandsCam);
+
+            commandsCam = commandsCam.Replace("\r\n", "$");
+
+            if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
+            {
+                try
+                {
+                    NetworkStream cameraStream = cameraClient.GetStream();
+                    NetworkStream robotStream = robotClient.GetStream();
+                    byte[] buffer = new byte[1024];
+                    StringBuilder dataBuilderCam = new StringBuilder();
+                    StringBuilder dataBuilderRobot = new StringBuilder();
+
+                    string[] commandLinesCam = commandsCam.Split('$');
+                    string[] commandLinesRobot = commandsRobot.Split('\n');
+
+                    for (int i = 0; i < commandLinesRobot.Length - 1; i++)
+                    {
+                        await robotController.SendCommand(commandLinesRobot[i]);
+                        string receivedDataRobot = await robotController.ReceiveData(buffer);
+
+                        if (receivedDataRobot.Contains("OK"))
+                        {
+                            await cameraController.SendCommand(commandLinesCam[i]);
+                            string receivedDataCam = await cameraController.ReceiveData(buffer);
+
+                            if (receivedDataCam.Contains("HE,1"))
+                            {
+                                await Task.Delay(1000);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    btnHE.Enabled = true;
+                    finishHE();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng kết nối đến camera và robot trước khi gửi lệnh!");
+            }
         }
-
-
-
-        //private async void btnHE_Click(object sender, EventArgs e)
-        //{
-        //    btnHE.Enabled = false;
-
-        //    if (
-        //    !double.TryParse(txtMinX.Text, out double minX) ||
-        //    !double.TryParse(txtMaxX.Text, out double maxX) ||
-        //    !int.TryParse(txtStepX.Text, out int stepX) ||
-        //    !double.TryParse(txtMinY.Text, out double minY) ||
-        //    !double.TryParse(txtMaxY.Text, out double maxY) ||
-        //    !int.TryParse(txtStepY.Text, out int stepY) ||
-        //    !double.TryParse(txtMinT.Text, out double minT) ||
-        //    !double.TryParse(txtMaxT.Text, out double maxT) ||
-        //    !int.TryParse(txtStepT.Text, out int stepT) ||
-        //    !double.TryParse(txtZ.Text, out double z) ||
-        //    !double.TryParse(txtRx.Text, out double Rx) ||
-        //    !double.TryParse(txtRy.Text, out double Ry))
-        //    {
-        //        MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    StringBuilder commandBuilderCam = new StringBuilder();
-        //    StringBuilder commandBuilderRobot = new StringBuilder();
-        //    int fig = 5; // Gán tư thế robot = 5
-
-        //    await RunHE(minX, maxX, stepX, minY, maxY, stepY, minT, maxT, stepT, z, Rx, Ry, fig, commandBuilderCam, commandBuilderRobot);
-
-
-        //    string commandsCam = commandBuilderCam.ToString();
-        //    string commandsRobot = commandBuilderRobot.ToString();
-
-        //    Console.WriteLine("commandsCam = " + commandsCam);
-
-        //    commandsCam = commandsCam.Replace("\r\n", "$");
-
-        //    if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
-        //    {
-        //        try
-        //        {
-        //            NetworkStream cameraStream = cameraClient.GetStream();
-        //            NetworkStream robotStream = robotClient.GetStream();
-        //            byte[] buffer = new byte[1024];
-        //            StringBuilder dataBuilderCam = new StringBuilder();
-        //            StringBuilder dataBuilderRobot = new StringBuilder();
-
-        //            string[] commandLinesCam = commandsCam.Split('$');
-        //            string[] commandLinesRobot = commandsRobot.Split('\n');
-
-        //            for (int i = 0; i < commandLinesRobot.Length - 1; i++)
-        //            {
-        //                await SendCommandToRobot(robotStream, commandLinesRobot[i]);
-        //                string receivedDataRobot = await ReceiveDataFromRobot(robotStream, buffer);
-
-        //                if (receivedDataRobot.Contains("OK"))
-        //                {
-        //                    await SendCommandToCamera(cameraStream, commandLinesCam[i]);
-        //                    string receivedDataCam = await ReceiveDataFromCamera(cameraStream, buffer);
-
-        //                    if (receivedDataCam.Contains("HE,1"))
-        //                    {
-        //                        await Task.Delay(1500);
-        //                    }
-        //                    else
-        //                    {
-        //                        break;
-        //                    }
-        //                }
-        //            }
-
-
-
-        //            btnHE.Enabled = true;
-        //            finishHE();
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Vui lòng kết nối đến camera và robot trước khi gửi lệnh!");
-        //    }
-        //}
 
 
 
@@ -219,25 +217,22 @@ namespace WindowsFormsApp4
 
         }
 
-        //async void finishHE()
-        //{
-        //    string command = "HEE,1";
-        //    byte[] buffer = new byte[1024];
-        //    NetworkStream cameraStream = cameraClient.GetStream();
-        //    await SendCommandToCamera(cameraStream, command);
-        //    string receivedDataCam = await ReceiveDataFromCamera(cameraStream, buffer);
-        //    MessageBox.Show("HE finish");
-        //}
+        async void finishHE()
+        {
+            string command = "HEE,1";
+            byte[] buffer = new byte[1024];
+            NetworkStream cameraStream = cameraClient.GetStream();
+            await cameraController.SendCommand(command);
+            string receivedDataCam = await cameraController.ReceiveData(buffer);
+            MessageBox.Show("HE finish");
+        }
 
 
 
         private async void btnAutoCalib_Click(object sender, EventArgs e)
         {
 
-
-
             btnAutoCalib.Enabled = false;
-
 
             if (
             !double.TryParse(txtMinX.Text, out double minX) ||
@@ -362,7 +357,6 @@ namespace WindowsFormsApp4
             txtRz.Text = robotController.rz;
             txtFig2.Text = robotController.fig;
 
-
         }
         
         private async void btnMoveRobot_Click(object sender, EventArgs e)
@@ -394,7 +388,6 @@ namespace WindowsFormsApp4
         private bool isZDecreasing = false;
         private bool isRzIncreasing = false;
         private bool isRzDecreasing = false;
-
 
         //move X -----------------------------------------------------
         private async void btnXup_MouseDown(object sender, MouseEventArgs e)
@@ -617,6 +610,65 @@ namespace WindowsFormsApp4
             isRzDecreasing = false;
         }
 
+        
+        private async Task TrainVisionPickPlace(int feature)
+        {
+            double.TryParse(txtX.Text, out double x);
+            double.TryParse(txtY.Text, out double y);
+            double.TryParse(txtZ2.Text, out double z);
+            double.TryParse(txtRx2.Text, out double rx);
+            double.TryParse(txtRy2.Text, out double ry);
+            double.TryParse(txtRz.Text, out double rz);
+
+            string command = $"TT,{feature},{x},{y},{z},{rz},{ry},{rx}";
+            await cameraController.SendCommand(command);
+
+            byte[] buffer = new byte[1024];
+            await cameraController.ReceiveData(buffer);
+        }
+
+        private async Task TrainRobotPickPlace(int feature)
+        {
+            double.TryParse(txtX.Text, out double x);
+            double.TryParse(txtY.Text, out double y);
+            double.TryParse(txtZ2.Text, out double z);
+            double.TryParse(txtRx2.Text, out double rx);
+            double.TryParse(txtRy2.Text, out double ry);
+            double.TryParse(txtRz.Text, out double rz);
+
+            string command = $"TTR,{feature},{x},{y},{z},{rz},{ry},{rx}";
+            await cameraController.SendCommand(command);
+
+            byte[] buffer = new byte[1024];
+            await cameraController.ReceiveData(buffer);
+        }
+        // Train điểm gắp, lấy điểm chụp là feature 1
+        private async void btnTrainVisionPick_Click(object sender, EventArgs e)
+        {
+
+            int feature = 1;
+            await TrainVisionPickPlace(feature);
+        }
+        
+        private async void btnTrainRobotPick_Click(object sender, EventArgs e)
+        {
+            int feature = 1;
+            await TrainRobotPickPlace(feature);
+        }
+
+        // Train điểm thả, lấy điểm gắp là feature 2
+        private async void btnTrainVisionPlace_Click(object sender, EventArgs e)
+        {
+            int feature = 2;
+            await TrainVisionPickPlace(feature);
+
+        }
+
+        private async void btnTrainRobotPlace_Click(object sender, EventArgs e)
+        {
+            int feature = 2;
+            await TrainRobotPickPlace(feature);
+        }
     }
 
 }
