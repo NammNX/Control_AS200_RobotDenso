@@ -1,0 +1,198 @@
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+C:\Users\DELL\source\repos\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+C:\Users\admin\Desktop\calib as200\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+D:\Des\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+C:\Users\admin\Desktop\WindowsFormsApp4\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\THH\Documents\Zalo Received Files\WindowsFormsApp4 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.exe
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Properties.Resources.resources
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.exe
+C:\Users\DELL\Documents\Zalo Received Files\WindowsFormsApp4 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.pdb
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\Calib_robot_as200\CalibHE_Robot\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\New folder\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
