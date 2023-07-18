@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-
+//nxn
 namespace WindowsFormsApp4
 {
     public partial class Form1 : Form
@@ -21,8 +21,7 @@ namespace WindowsFormsApp4
 
         private TcpClient robotClient;
         private TcpClient cameraClient;
-        //string PosRobot;
-        //double x, y, z, rx, ry, rz, fig;
+       
 
         public Form1()
         {
