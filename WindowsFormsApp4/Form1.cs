@@ -36,62 +36,7 @@ namespace WindowsFormsApp4
 
 
 
-        //void connectRobot()
-        //{
-        //    string ipAddress = txtRobotIP.Text;
-        //    int port = int.Parse(txtRobotPort.Text);
-
-        //    try
-        //    {
-        //        robotClient = new TcpClient();
-        //        robotClient.Connect(ipAddress, port);
-        //        btnConnectRobot.Enabled = false;
-        //        lbStatusRobot.Text = "Connected";
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Không thể kết nối đến robot. Lỗi: " + ex.Message);
-        //    }
-        //}
-        //void disconnectRobot()
-        //{
-        //    if (robotClient != null && robotClient.Connected)
-        //    {
-        //        btnConnectRobot.Enabled = true;
-        //        robotClient.Close();
-        //        robotClient = null;
-        //        lbStatusRobot.Text = "Disconnected";
-        //    }
-        //}
-        //void connectCam()
-        //{
-        //    string ipAddress = txtIP.Text;
-        //    int port = int.Parse(txtPORT.Text);
-
-        //    try
-        //    {
-        //        cameraClient = new TcpClient();
-        //        cameraClient.Connect(ipAddress, port);
-        //        lbstatusCam.Text = "Connected";
-        //        btnConnectCam.Enabled = false;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Không thể kết nối đến camera. Lỗi: " + ex.Message);
-        //    }
-        //}
-        //void disConnectCam()
-        //{
-
-        //    if (cameraClient != null && cameraClient.Connected)
-        //    {
-        //        btnConnectCam.Enabled = true;
-        //        cameraClient.Close();
-        //        cameraClient = null;
-        //        lbstatusCam.Text = "Disconected";
-        //    }
-        //}
+        
         private void btnConnectRobot_Click(object sender, EventArgs e)
         {
             string ipAddress = txtRobotIP.Text;
@@ -122,106 +67,7 @@ namespace WindowsFormsApp4
             btnConnectCam.Enabled = true;
         }
 
-        //private async Task SendCommandToCamera(NetworkStream cameraStream, string command)
-        //{
-        //    string commandWithNewLine = command + "\r\n";
-        //    byte[] dataCam = Encoding.ASCII.GetBytes(commandWithNewLine);
-        //    txtReceivedData.Invoke((MethodInvoker)(() =>
-        //    {
-        //        txtReceivedData.AppendText(">>>> Camera: " + commandWithNewLine + Environment.NewLine);
-        //    }));
-        //    await cameraStream.WriteAsync(dataCam, 0, dataCam.Length);
-        //}
-
-        //private async Task<string> ReceiveDataFromCamera(NetworkStream cameraStream, byte[] buffer)
-        //{
-        //    StringBuilder dataBuilderCam = new StringBuilder();
-
-        //    int bytesReadCam = await cameraStream.ReadAsync(buffer, 0, buffer.Length);
-        //    Console.WriteLine("bytesReadCam = " + bytesReadCam);
-        //    if (bytesReadCam > 0)
-        //    {
-        //        string receivedDataCam = Encoding.ASCII.GetString(buffer, 0, bytesReadCam);
-        //        dataBuilderCam.Append(receivedDataCam);
-
-        //        txtReceivedData.Invoke((MethodInvoker)(() =>
-        //        {
-        //            txtReceivedData.AppendText("<<<< Camera: " + receivedDataCam + Environment.NewLine);
-        //        }));
-
-        //        return receivedDataCam;
-        //    }
-
-        //    return string.Empty;
-        //}
-
-        //private async Task SendCommandToRobot(NetworkStream robotStream, string command)
-        //{
-        //    byte[] dataRobot = Encoding.ASCII.GetBytes(command);
-        //    txtReceivedData.Invoke((MethodInvoker)(() =>
-        //    {
-        //        txtReceivedData.AppendText(">>>> Robot: " + command + Environment.NewLine);
-        //    }));
-        //    await robotStream.WriteAsync(dataRobot, 0, dataRobot.Length);
-        //}
-
-        //private async Task<string> ReceiveDataFromRobot(NetworkStream robotStream, byte[] buffer)
-        //{
-        //    StringBuilder dataBuilderRobot = new StringBuilder();
-
-        //    int bytesReadRobot = await robotStream.ReadAsync(buffer, 0, buffer.Length);
-        //    if (bytesReadRobot > 0)
-        //    {
-        //        string receivedDataRobot = Encoding.ASCII.GetString(buffer, 0, bytesReadRobot);
-        //        dataBuilderRobot.Append(receivedDataRobot);
-
-        //        txtReceivedData.Invoke((MethodInvoker)(() =>
-        //        {
-        //            txtReceivedData.AppendText("<<<< Robot: " + receivedDataRobot + Environment.NewLine);
-        //        }));
-
-        //        return receivedDataRobot;
-        //    }
-
-        //    return string.Empty;
-        //}
-        //private async Task GetRobotCurrentPosition()
-        //{
-        //    if (robotClient != null && robotClient.Connected)
-        //    {
-        //        byte[] buffer = new byte[1024];
-        //        StringBuilder dataBuilderRobot = new StringBuilder();
-        //        try
-        //        {
-        //            NetworkStream stream = robotClient.GetStream();
-        //            string TakeCurrenPos = "CRP,";
-        //            await SendCommandToRobot(stream, TakeCurrenPos);
-        //            string receivedDataRobot = await ReceiveDataFromRobot(stream, buffer);
-
-        //            string[] commandLinesRobot = receivedDataRobot.Split(' ');
-        //            if (commandLinesRobot.Length >= 6)
-        //            {
-        //                x = commandLinesRobot[0];
-        //                y = commandLinesRobot[1];
-        //                z = commandLinesRobot[2];
-        //                rx = commandLinesRobot[3];
-        //                ry = commandLinesRobot[4];
-        //                rz = commandLinesRobot[5];
-        //                Fig = commandLinesRobot[6];
-        //                Console.WriteLine(Fig);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Kết nối robot trước khi gửi lệnh!");
-        //    }
-        //}
-
+        
         private async Task RunHE(double minX, double maxX, int stepX, double minY, double maxY, int stepY,
                                     double minT, double maxT, int stepT, double z, double Rx, double Ry,
                                     int fig, StringBuilder commandBuilderCam, StringBuilder commandBuilderRobot)
@@ -519,32 +365,7 @@ namespace WindowsFormsApp4
 
 
         }
-        //private async Task MoveRobot()
-        //{
-        //    if (
-        //    !double.TryParse(txtX.Text, out double X) ||
-        //    !double.TryParse(txtY.Text, out double Y) ||
-        //    !double.TryParse(txtZ2.Text, out double Z) ||
-        //    !double.TryParse(txtRx2.Text, out double Rx) ||
-        //    !double.TryParse(txtRy2.Text, out double Ry) ||
-        //    !double.TryParse(txtRz.Text, out double Rz) ||
-        //    !double.TryParse(txtFig2.Text, out double Fig))
-
-        //    {
-        //        MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-        //    PosRobot = $"{X},{Y},{Z},{Rx},{Ry},{Rz},{Fig},";
-        //    NetworkStream robotStream = robotClient.GetStream();
-        //    if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
-        //    {
-        //        await SendCommandToRobot(robotStream, "ROBOTMOVE,");
-        //        await Task.Delay(100);
-        //        await SendCommandToRobot(robotStream, PosRobot);
-
-        //    }
-        //}
-
+        
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
             if (
