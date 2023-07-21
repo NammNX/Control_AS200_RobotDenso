@@ -82,6 +82,7 @@
             this.btnDisconnectCam = new System.Windows.Forms.Button();
             this.btnConnectCam = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnTrainRobotPlace = new System.Windows.Forms.Button();
             this.btnTrainRobotPick = new System.Windows.Forms.Button();
             this.btnTrainVisionPlace = new System.Windows.Forms.Button();
@@ -111,7 +112,6 @@
             this.btnZup = new System.Windows.Forms.Button();
             this.btnXdown = new System.Windows.Forms.Button();
             this.btnXup = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -193,7 +193,7 @@
             // 
             this.btnAutoCalib.BackColor = System.Drawing.Color.Lime;
             this.btnAutoCalib.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnAutoCalib.Location = new System.Drawing.Point(362, 388);
+            this.btnAutoCalib.Location = new System.Drawing.Point(159, 388);
             this.btnAutoCalib.Name = "btnAutoCalib";
             this.btnAutoCalib.Size = new System.Drawing.Size(57, 50);
             this.btnAutoCalib.TabIndex = 70;
@@ -355,7 +355,7 @@
             // btnHE
             // 
             this.btnHE.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnHE.Location = new System.Drawing.Point(221, 388);
+            this.btnHE.Location = new System.Drawing.Point(391, 388);
             this.btnHE.Margin = new System.Windows.Forms.Padding(2);
             this.btnHE.Name = "btnHE";
             this.btnHE.Size = new System.Drawing.Size(55, 50);
@@ -603,7 +603,7 @@
             this.txtRobotIP.Name = "txtRobotIP";
             this.txtRobotIP.Size = new System.Drawing.Size(138, 20);
             this.txtRobotIP.TabIndex = 29;
-            this.txtRobotIP.Text = "192.168.1.30";
+            this.txtRobotIP.Text = "10.68.86.59";
             // 
             // label17
             // 
@@ -623,7 +623,7 @@
             this.txtCamIp.Name = "txtCamIp";
             this.txtCamIp.Size = new System.Drawing.Size(138, 20);
             this.txtCamIp.TabIndex = 28;
-            this.txtCamIp.Text = "192.168.1.10";
+            this.txtCamIp.Text = "10.68.86.59";
             // 
             // label13
             // 
@@ -717,6 +717,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Train Robot";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(60, 269);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(394, 20);
+            this.textBox1.TabIndex = 7;
             // 
             // btnTrainRobotPlace
             // 
@@ -993,16 +1001,9 @@
             this.btnXup.TabIndex = 0;
             this.btnXup.Text = "X +";
             this.btnXup.UseVisualStyleBackColor = false;
+           // this.btnXup.Click += new System.EventHandler(this.btnXup_Click);
             this.btnXup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseDown);
             this.btnXup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseUp);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(60, 269);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(394, 20);
-            this.textBox1.TabIndex = 7;
             // 
             // Form1
             // 

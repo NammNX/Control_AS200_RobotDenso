@@ -10,13 +10,18 @@ namespace WindowsFormsApp4
     {
         private TcpClient cameraClient;
         public TextBox TextReceivedData { get; set; }
+        public bool IsConnected { get; private set; }
 
         public void ConnectCamera(string ipAddress, int port)
         {
             try
             {
-                cameraClient = new TcpClient();
-                cameraClient.Connect(ipAddress, port);
+                if (cameraClient == null)
+                {
+                    cameraClient = new TcpClient();
+                    cameraClient.Connect(ipAddress, port);
+                    IsConnected = true;
+                }
 
             }
             catch (Exception ex)
@@ -31,6 +36,7 @@ namespace WindowsFormsApp4
             {
                 cameraClient.Close();
                 cameraClient = null;
+                IsConnected = false;
             }
 
         }

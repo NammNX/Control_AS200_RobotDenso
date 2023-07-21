@@ -196,3 +196,17 @@ C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\D
 C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete
 C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
 C:\Users\THH\Desktop\CalibHE_Cognex_AS200 (1) (1) (1) (1)\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.Form1.resources
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\CalibHE_Robot.Properties.Resources.resources
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.TestCamForm.resources
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe.config
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\bin\Debug\CalibHE_Robot.exe
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\bin\Debug\CalibHE_Robot.pdb
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\bin\Debug\SimpleTCP.dll
+C:\Users\admin\Desktop\Control_AS200_RobotDenso\Control_AS200_RobotDenso\WindowsFormsApp4\obj\Debug\WindowsFormsApp4.csproj.CopyComplete

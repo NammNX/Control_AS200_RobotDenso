@@ -10,22 +10,27 @@ namespace WindowsFormsApp4
     {
         private TcpClient robotClient;
         public TextBox TextReceivedData { get; set; }
-        public string x { get;set; }
-        public string y { get; set; }
+        public bool IsConnected { get; private set; }
+        public string x { get; private set; }
+        public string y { get; private set; }
 
-        public string z { get; set; }
-        public string rx { get; set; }
-        public string ry { get; set; }
-        public string rz { get; set; }
-        public string fig { get; set; }
+        public string z { get;private set; }
+        public string rx { get; private set; }
+        public string ry { get; private set; }
+        public string rz { get; private set; }
+        public string fig { get; private set; }
 
 
         public void ConnectRobot(string ipAddress, int port)
         {
             try
             {
-                robotClient = new TcpClient();
-                robotClient.Connect(ipAddress, port);
+                if (robotClient == null)
+                {
+                    robotClient = new TcpClient();
+                    robotClient.Connect(ipAddress, port);
+                    IsConnected = true;
+                }
 
             }
             catch (Exception ex)
@@ -40,7 +45,7 @@ namespace WindowsFormsApp4
             {
                 robotClient.Close();
                 robotClient = null;
-                
+                IsConnected = false;
             }
         }
         public async Task SendCommand(string command)
@@ -107,10 +112,10 @@ namespace WindowsFormsApp4
             if (robotClient != null && robotClient.Connected)
             {
                 byte[] buffer = new byte[1024];
-                StringBuilder dataBuilderRobot = new StringBuilder();
+                
                 try
                 {
-                    NetworkStream stream = robotClient.GetStream();
+                    
                     string TakeCurrenPos = "CRP,";
                     await SendCommand(TakeCurrenPos);
                     string receivedDataRobot = await ReceiveData(buffer);
@@ -125,9 +130,10 @@ namespace WindowsFormsApp4
                         ry = commandLinesRobot[4];
                         rz = commandLinesRobot[5];
                         fig = commandLinesRobot[6];
-                        Console.WriteLine(fig);
+                        
                     }
                 }
+                
                 catch (Exception ex)
                 {
                     MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
@@ -139,7 +145,7 @@ namespace WindowsFormsApp4
             }
         }
 
-        public async Task MoveRobot(double x, double y, double z, double rx, double ry, double rz, double fig)
+        public async Task MoveRobot(string x, string y, string z, string rx, string ry, string rz, string fig)
         {   
             
             string PosRobot = $"{x},{y},{z},{rx},{ry},{rz},{fig},";
@@ -147,7 +153,7 @@ namespace WindowsFormsApp4
             if (robotClient != null && robotClient.Connected)
             {
                 await SendCommand("ROBOTMOVE,");
-               // await Task.Delay(100);
+                await Task.Delay(20);
                 await SendCommand(PosRobot);
 
             }

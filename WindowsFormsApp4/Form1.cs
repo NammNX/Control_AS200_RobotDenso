@@ -18,24 +18,29 @@ namespace WindowsFormsApp4
     {
         private CameraController cameraController;
         private RobotController robotController;
+        string x, y, z, rx, ry, rz, fig;
 
-        private TcpClient robotClient;
-        private TcpClient cameraClient;
-       
+        //private TcpClient robotClient;
+        //private TcpClient cameraClient;
+
 
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += Form1_FormClosing;
             cameraController = new CameraController();
             cameraController.TextReceivedData = txtReceivedData;
             robotController = new RobotController();
             robotController.TextReceivedData = txtReceivedData;
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!cameraController.IsConnected && !robotController.IsConnected) { return; }
+            robotController.DisConnectRobot();
+            cameraController.DisconnectCamera();
+        }
 
-
-
-        
         private void btnConnectRobot_Click(object sender, EventArgs e)
         {
             string ipAddress = txtRobotIP.Text;
@@ -49,9 +54,10 @@ namespace WindowsFormsApp4
         {
             robotController.DisConnectRobot();
             btnConnectRobot.Enabled = true;
+            lbStatusRobot.Text = "Connection closed";
         }
 
-        private async void btnConnectCam_Click(object sender, EventArgs e)
+        private void btnConnectCam_Click(object sender, EventArgs e)
         {
             string ipAddress = txtCamIp.Text;
             int port = int.Parse(txtCamPort.Text);
@@ -64,10 +70,11 @@ namespace WindowsFormsApp4
         {
             cameraController.DisconnectCamera();
             btnConnectCam.Enabled = true;
+            lbstatusCam.Text = "Connection closed";
         }
 
-        
-       
+
+
 
 
         private async void btnSend_Click(object sender, EventArgs e)
@@ -77,7 +84,7 @@ namespace WindowsFormsApp4
             await cameraController.SendCommand(command);
             byte[] buffer = new byte[1024];
             await cameraController.ReceiveData(buffer);
-           
+
         }
 
         private async Task RunHE(double minX, double maxX, int stepX, double minY, double maxY, int stepY,
@@ -108,6 +115,7 @@ namespace WindowsFormsApp4
 
         private async void btnHE_Click(object sender, EventArgs e)
         {
+
             btnHE.Enabled = false;
 
             if (
@@ -122,7 +130,8 @@ namespace WindowsFormsApp4
             !int.TryParse(txtStepT.Text, out int stepT) ||
             !double.TryParse(txtZ.Text, out double z) ||
             !double.TryParse(txtRx.Text, out double Rx) ||
-            !double.TryParse(txtRy.Text, out double Ry))
+            !double.TryParse(txtRy.Text, out double Ry) ||
+            !int.TryParse(txtRx.Text, out int fig))
             {
                 MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -130,7 +139,7 @@ namespace WindowsFormsApp4
 
             StringBuilder commandBuilderCam = new StringBuilder();
             StringBuilder commandBuilderRobot = new StringBuilder();
-            int fig = 5; // Gán tư thế robot = 5
+
 
             await RunHE(minX, maxX, stepX, minY, maxY, stepY, minT, maxT, stepT, z, Rx, Ry, fig, commandBuilderCam, commandBuilderRobot);
 
@@ -142,13 +151,14 @@ namespace WindowsFormsApp4
 
             commandsCam = commandsCam.Replace("\r\n", "$");
 
-            if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
+            if (cameraController.IsConnected && robotController.IsConnected)
             {
                 try
                 {
-                    NetworkStream cameraStream = cameraClient.GetStream();
-                    NetworkStream robotStream = robotClient.GetStream();
                     byte[] buffer = new byte[1024];
+                    await cameraController.SendCommand("HEB,1");
+                    await cameraController.ReceiveData(buffer);
+
                     StringBuilder dataBuilderCam = new StringBuilder();
                     StringBuilder dataBuilderRobot = new StringBuilder();
 
@@ -177,7 +187,9 @@ namespace WindowsFormsApp4
                     }
 
                     btnHE.Enabled = true;
-                    finishHE();
+                    await cameraController.SendCommand("HEE,1");
+                    await cameraController.ReceiveData(buffer);
+                    MessageBox.Show("HE finish");
 
                 }
                 catch (Exception ex)
@@ -213,19 +225,9 @@ namespace WindowsFormsApp4
             txtMinT.Text = robotController.rz;
             txtFig.Text = robotController.fig;
 
-
-
         }
 
-        async void finishHE()
-        {
-            string command = "HEE,1";
-            byte[] buffer = new byte[1024];
-            NetworkStream cameraStream = cameraClient.GetStream();
-            await cameraController.SendCommand(command);
-            string receivedDataCam = await cameraController.ReceiveData(buffer);
-            MessageBox.Show("HE finish");
-        }
+
 
 
 
@@ -250,10 +252,11 @@ namespace WindowsFormsApp4
             //string currentPost = $"{minX},{minY},{z},{Rx},{Ry},{minT},{Fig},";
             byte[] buffer = new byte[1024];
 
-            if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
+            //if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
+            if (cameraController.IsConnected && robotController.IsConnected)
             {
                 //NetworkStream cameraStream = cameraClient.GetStream();
-                NetworkStream robotStream = robotClient.GetStream();
+                // NetworkStream robotStream = robotClient.GetStream();
 
                 await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
                 await cameraController.SendCommand(command);
@@ -356,261 +359,152 @@ namespace WindowsFormsApp4
             txtRy2.Text = robotController.ry;
             txtRz.Text = robotController.rz;
             txtFig2.Text = robotController.fig;
+            x = robotController.x;
+            y = robotController.y;
+            z = robotController.z;
+            rx = robotController.rx;
+            ry = robotController.ry;
+            rz = robotController.rz;
+            fig = robotController.fig;
+
+
 
         }
-        
+
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
-            if (
-           double.TryParse(txtX.Text, out double x) &&
-           double.TryParse(txtY.Text, out double y) &&
-           double.TryParse(txtZ2.Text, out double z) &&
-           double.TryParse(txtRx2.Text, out double rx) &&
-           double.TryParse(txtRy2.Text, out double ry) &&
-           double.TryParse(txtRz.Text, out double rz) &&
-           double.TryParse(txtFig2.Text, out double fig))
+            // if (
+            //double.TryParse(txtX.Text, out double x) &&
+            //double.TryParse(txtY.Text, out double y) &&
+            //double.TryParse(txtZ2.Text, out double z) &&
+            //double.TryParse(txtRx2.Text, out double rx) &&
+            //double.TryParse(txtRy2.Text, out double ry) &&
+            //double.TryParse(txtRz.Text, out double rz) &&
+            //double.TryParse(txtRz.Text, out double fig))
 
-            {
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-            }
-            else
-            {
-                MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // {
+            await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRz.Text, txtRz.Text, txtRz.Text);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
+            //}
         }
 
-        private bool isXIncreasing = false;
-        private bool isXDecreasing = false;
-        private bool isYIncreasing = false;
-        private bool isYDecreasing = false;
-        private bool isZIncreasing = false;
-        private bool isZDecreasing = false;
-        private bool isRzIncreasing = false;
-        private bool isRzDecreasing = false;
+        //private bool isXIncreasing = false;
+        //private bool isXDecreasing = false;
+        //private bool isYIncreasing = false;
+        //private bool isYDecreasing = false;
+        //private bool isZIncreasing = false;
+        //private bool isZDecreasing = false;
+        //private bool isRzIncreasing = false;
+        //private bool isRzDecreasing = false;
 
+       private async Task MouseUp()
+        {
+            await robotController.SendCommand("STOP,");
+            await Task.Delay(200);
+            await robotController.GetRobotCurrentPosition();
+        }
         //move X -----------------------------------------------------
         private async void btnXup_MouseDown(object sender, MouseEventArgs e)
         {
-            isXIncreasing = true;
-            
-            while (isXIncreasing)
-            {
-
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                x += 10;
-                txtX.Text = x.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-
-            }
+            x = "200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+        
         }
 
-        private void btnXup_MouseUp(object sender, MouseEventArgs e)
-        {
-            isXIncreasing = false;
+        private async void btnXup_MouseUp(object sender, MouseEventArgs e)
+        { 
+           await MouseUp();
         }
 
         private async void btnXdown_MouseDown(object sender, MouseEventArgs e)
         {
-            isXDecreasing = true;
-           
-            while (isXDecreasing)
-            {
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                x += -10;
-                txtX.Text = x.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-            }
+            
+           x = "-200";     
+           await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+              
+            
         }
 
-        private void btnXdown_MouseUp(object sender, MouseEventArgs e)
+        private async void btnXdown_MouseUp(object sender, MouseEventArgs e)
         {
-            isXDecreasing = false;
+
+            await MouseUp();
         }
         // move Y -------------------------------------------------
         private async void btnYup_MouseDown(object sender, MouseEventArgs e)
         {
-            isYIncreasing = true;
+            y = "200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
 
-            while (isYIncreasing)
-            {
-
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                y += 10;
-                txtY.Text = y.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-            }
         }
 
-        private void btnYup_MouseUp(object sender, MouseEventArgs e)
+        private async void btnYup_MouseUp(object sender, MouseEventArgs e)
         {
-            isYIncreasing = false;
+            await MouseUp();
         }
 
         private async void btnYdown_MouseDown(object sender, MouseEventArgs e)
         {
-            isYDecreasing = true;
-
-            while (isYDecreasing)
-            {
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                y += -10;
-                txtY.Text = y.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-            }
+            y = "-200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
         }
 
-        private void btnYdown_MouseUp(object sender, MouseEventArgs e)
+        private async void btnYdown_MouseUp(object sender, MouseEventArgs e)
         {
-            isYDecreasing = false;
+            await MouseUp();
         }
 
         //move Z -----------------------------------------------
         private async void btnZup_MouseDown(object sender, MouseEventArgs e)
         {
-            isZIncreasing = true;
-
-            while (isZIncreasing)
-            {
-
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                z += 10;
-                txtZ2.Text = z.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-
-            }
+            z = "200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
         }
 
-        private void btnZup_MouseUp(object sender, MouseEventArgs e)
+        private async void btnZup_MouseUp(object sender, MouseEventArgs e)
         {
-            isZIncreasing = false;
+            await MouseUp();
         }
 
         private async void btnZdown_MouseDown(object sender, MouseEventArgs e)
         {
-            isZDecreasing = true;
-
-            while (isZDecreasing)
-            {
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                z += -10;
-                txtZ2.Text = z.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-            }
+            z = "-200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
         }
 
-        private void btnZdown_MouseUp(object sender, MouseEventArgs e)
+        private async void btnZdown_MouseUp(object sender, MouseEventArgs e)
         {
-            isZDecreasing = false;
+            await MouseUp();
         }
 
         //move Rz ---------------------------------------------------------------
         private async void btnRzup_MouseDown(object sender, MouseEventArgs e)
         {
-            isRzIncreasing = true;
-
-            while (isRzIncreasing)
-            {
-
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                rz += 2;
-                txtRz.Text = rz.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-
-            }
+            rz = "200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
         }
 
-        private void btnRzup_MouseUp(object sender, MouseEventArgs e)
+        private async void btnRzup_MouseUp(object sender, MouseEventArgs e)
         {
-            isRzIncreasing = false;
+            await MouseUp();
         }
 
         private async void btnRzdown_MouseDown(object sender, MouseEventArgs e)
         {
-            isRzDecreasing = true;
-
-            while (isRzDecreasing)
-            {
-                double.TryParse(txtX.Text, out double x);
-                double.TryParse(txtY.Text, out double y);
-                double.TryParse(txtZ2.Text, out double z);
-                double.TryParse(txtRx2.Text, out double rx);
-                double.TryParse(txtRy2.Text, out double ry);
-                double.TryParse(txtRz.Text, out double rz);
-                double.TryParse(txtFig2.Text, out double fig);
-                rz += -2;
-                txtRz.Text = rz.ToString();
-                await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-                byte[] buffer = new byte[1024];
-                await robotController.ReceiveData(buffer);
-            }
+            rz = "-200";
+            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
         }
 
-        private void btnRzdown_MouseUp(object sender, MouseEventArgs e)
+        private async void btnRzdown_MouseUp(object sender, MouseEventArgs e)
         {
-            isRzDecreasing = false;
+            await MouseUp();
         }
 
-        
+
         private async Task TrainVisionPickPlace(int feature)
         {
             double.TryParse(txtX.Text, out double x);
@@ -649,7 +543,7 @@ namespace WindowsFormsApp4
             int feature = 1;
             await TrainVisionPickPlace(feature);
         }
-        
+
         private async void btnTrainRobotPick_Click(object sender, EventArgs e)
         {
             int feature = 1;
@@ -669,6 +563,8 @@ namespace WindowsFormsApp4
             int feature = 2;
             await TrainRobotPickPlace(feature);
         }
+
+
     }
 
 }
