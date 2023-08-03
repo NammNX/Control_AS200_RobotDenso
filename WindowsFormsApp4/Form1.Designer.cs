@@ -627,7 +627,7 @@
             this.txtRobotIP.Name = "txtRobotIP";
             this.txtRobotIP.Size = new System.Drawing.Size(138, 20);
             this.txtRobotIP.TabIndex = 29;
-            this.txtRobotIP.Text = "10.68.86.59";
+            this.txtRobotIP.Text = "192.168.1.30";
             // 
             // label17
             // 
