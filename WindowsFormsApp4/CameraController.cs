@@ -10,40 +10,41 @@ namespace WindowsFormsApp4
     {
         private TcpClient cameraClient;
         public TextBox TextReceivedData { get; set; }
-        public bool IsConnected { get; private set; }
+        public bool IsConnected { get { return cameraClient != null && cameraClient.Connected; } }
 
         public void ConnectCamera(string ipAddress, int port)
         {
             try
             {
-                if (cameraClient == null)
+                if (!IsConnected)
                 {
                     cameraClient = new TcpClient();
                     cameraClient.Connect(ipAddress, port);
-                    IsConnected = true;
+                   
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Không thể kết nối đến camera. Lỗi: " + ex.Message);
+                
             }
         }
 
         public void DisconnectCamera()
         {
-            if (cameraClient != null && cameraClient.Connected)
+            if (IsConnected)
             {
                 cameraClient.Close();
                 cameraClient = null;
-                IsConnected = false;
+                
             }
 
         }
 
         public async Task SendCommand(string command)
         {
-            if (cameraClient != null && cameraClient.Connected)
+            if (IsConnected)
             {
                 try
                 {
@@ -69,7 +70,7 @@ namespace WindowsFormsApp4
 
         public async Task<string> ReceiveData(byte[] buffer)
         {
-            if (cameraClient != null && cameraClient.Connected)
+            if (IsConnected)
             {
                 try
                 {

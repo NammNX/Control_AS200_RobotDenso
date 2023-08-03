@@ -19,7 +19,7 @@ namespace WindowsFormsApp4
         private CameraController cameraController;
         private RobotController robotController;
         string x, y, z, rx, ry, rz, fig;
-
+        string j1,j2, j3, j4,j5,j6;
         //private TcpClient robotClient;
         //private TcpClient cameraClient;
 
@@ -46,8 +46,15 @@ namespace WindowsFormsApp4
             string ipAddress = txtRobotIP.Text;
             int port = int.Parse(txtRobotPort.Text);
             robotController.ConnectRobot(ipAddress, port);
-            lbStatusRobot.Text = "Connected";
-            btnConnectRobot.Enabled = false;
+            if (robotController.IsConnected)
+            {
+                lbStatusRobot.Text = "Connected";
+                btnConnectRobot.Enabled = false;
+            }
+            else {
+                lbStatusRobot.Text = "Connection closed";
+                btnConnectRobot.Enabled = true;
+            }
         }
 
         private void btnDisconnectRobot_Click(object sender, EventArgs e)
@@ -62,8 +69,16 @@ namespace WindowsFormsApp4
             string ipAddress = txtCamIp.Text;
             int port = int.Parse(txtCamPort.Text);
             cameraController.ConnectCamera(ipAddress, port);
-            lbstatusCam.Text = "Connected";
-            btnConnectCam.Enabled = false;
+            if (cameraController.IsConnected)
+            {
+                lbstatusCam.Text = "Connected";
+                btnConnectCam.Enabled = false;
+            }
+            else
+            {
+                lbstatusCam.Text = "Connection closed";
+                btnConnectCam.Enabled = true;
+            }
 
         }
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -224,12 +239,7 @@ namespace WindowsFormsApp4
             txtRy.Text = robotController.ry;
             txtMinT.Text = robotController.rz;
             txtFig.Text = robotController.fig;
-
         }
-
-
-
-
 
         private async void btnAutoCalib_Click(object sender, EventArgs e)
         {
@@ -249,15 +259,12 @@ namespace WindowsFormsApp4
                 return;
             }
             string command = $"ACB,1,1,{minX},{minY},{z},{minT},{Ry},{Rx}"; // Start HE
-            //string currentPost = $"{minX},{minY},{z},{Rx},{Ry},{minT},{Fig},";
+           
             byte[] buffer = new byte[1024];
 
-            //if (cameraClient != null && cameraClient.Connected && robotClient != null && robotClient.Connected)
+           
             if (cameraController.IsConnected && robotController.IsConnected)
             {
-                //NetworkStream cameraStream = cameraClient.GetStream();
-                // NetworkStream robotStream = robotClient.GetStream();
-
                 await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
                 await cameraController.SendCommand(command);
                 string receivedDataCam = await cameraController.ReceiveData(buffer);
@@ -267,7 +274,6 @@ namespace WindowsFormsApp4
                     int index = receivedDataCam.IndexOf(',');
                     string NextPosition = receivedDataCam.Substring(index + 3);
                     NextPosition = NextPosition.Replace("\r\n", "");
-
                     Console.WriteLine(NextPosition);
                     string[] part = NextPosition.Split(',');
                     string _NextPosition = "";
@@ -349,16 +355,28 @@ namespace WindowsFormsApp4
             }
             else { MessageBox.Show("Kết nối Cam và Robot trước khi Calib"); }
         }
+        private void UpdateUIComponents()
+        {
+            txtX.Text = x;
+            txtY.Text = y;
+            txtZ2.Text = z;
+            txtRx2.Text = rx;
+            txtRy2.Text = ry;
+            txtRz.Text = rz;
+            txtFig2.Text = fig;
+            txtJ1.Text = j1;
+            txtJ2.Text = j2;
+            txtJ3.Text = j3;
+            txtJ4.Text = j4;
+            txtJ5.Text = j5;
+            txtJ6.Text = j6;
+
+            
+        }
+
         private async void btnGetCurPos2_Click(object sender, EventArgs e)
         {
             await robotController.GetRobotCurrentPosition();
-            txtX.Text = robotController.x;
-            txtY.Text = robotController.y;
-            txtZ2.Text = robotController.z;
-            txtRx2.Text = robotController.rx;
-            txtRy2.Text = robotController.ry;
-            txtRz.Text = robotController.rz;
-            txtFig2.Text = robotController.fig;
             x = robotController.x;
             y = robotController.y;
             z = robotController.z;
@@ -367,141 +385,137 @@ namespace WindowsFormsApp4
             rz = robotController.rz;
             fig = robotController.fig;
 
+            UpdateUIComponents();
+
+        }
+
+        private async void btnGetCRJ_Click(object sender, EventArgs e)
+        {
+            await robotController.GetRobotCurrentJoint();
+            j1 = robotController.j1;
+            j2 = robotController.j2;
+            j3 = robotController.j3;
+            j4 = robotController.j4;
+            j5 = robotController.j5;
+            j6 = robotController.j6;
+            UpdateUIComponents();
 
 
         }
+
+
 
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
-            // if (
-            //double.TryParse(txtX.Text, out double x) &&
-            //double.TryParse(txtY.Text, out double y) &&
-            //double.TryParse(txtZ2.Text, out double z) &&
-            //double.TryParse(txtRx2.Text, out double rx) &&
-            //double.TryParse(txtRy2.Text, out double ry) &&
-            //double.TryParse(txtRz.Text, out double rz) &&
-            //double.TryParse(txtRz.Text, out double fig))
+          
 
-            // {
-            await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRz.Text, txtRz.Text, txtRz.Text);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //}
-        }
-
-        //private bool isXIncreasing = false;
-        //private bool isXDecreasing = false;
-        //private bool isYIncreasing = false;
-        //private bool isYDecreasing = false;
-        //private bool isZIncreasing = false;
-        //private bool isZDecreasing = false;
-        //private bool isRzIncreasing = false;
-        //private bool isRzDecreasing = false;
-
-       private async Task MouseUp()
-        {
-            await robotController.SendCommand("STOP,");
+            await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRy2.Text, txtRz.Text, txtFig2.Text);
             await Task.Delay(200);
-            await robotController.GetRobotCurrentPosition();
+            await robotController.SendCommand("End,");
+           
         }
+
+        
+       private async Task MouseUpPos()
+        {
+            await robotController.SendCommand("OK,");
+            await Task.Delay(200);
+            btnGetCurPos2.PerformClick();
+
+        }
+        private async Task MouseUpJoint()
+        {
+            await robotController.SendCommand("OK,");
+            await Task.Delay(200);
+            btnGetCRJ.PerformClick();
+
+        }
+
         //move X -----------------------------------------------------
         private async void btnXup_MouseDown(object sender, MouseEventArgs e)
         {
-            x = "200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-        
+            await robotController.SendCommand("X+,");
         }
 
         private async void btnXup_MouseUp(object sender, MouseEventArgs e)
-        { 
-           await MouseUp();
+        {
+           await MouseUpPos();
         }
 
         private async void btnXdown_MouseDown(object sender, MouseEventArgs e)
         {
-            
-           x = "-200";     
-           await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
-              
-            
+
+            await robotController.SendCommand("X-,");
         }
 
         private async void btnXdown_MouseUp(object sender, MouseEventArgs e)
         {
 
-            await MouseUp();
+            await MouseUpPos();
         }
         // move Y -------------------------------------------------
         private async void btnYup_MouseDown(object sender, MouseEventArgs e)
         {
-            y = "200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+            await robotController.SendCommand("Y+,");
 
         }
 
         private async void btnYup_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
         private async void btnYdown_MouseDown(object sender, MouseEventArgs e)
         {
-            y = "-200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+            await robotController.SendCommand("Y-,");
         }
 
         private async void btnYdown_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
         //move Z -----------------------------------------------
         private async void btnZup_MouseDown(object sender, MouseEventArgs e)
         {
-            z = "200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+            await robotController.SendCommand("Z+,");
         }
 
         private async void btnZup_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
         private async void btnZdown_MouseDown(object sender, MouseEventArgs e)
         {
-            z = "-200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+
+            await robotController.SendCommand("Z-,");
         }
 
         private async void btnZdown_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
         //move Rz ---------------------------------------------------------------
         private async void btnRzup_MouseDown(object sender, MouseEventArgs e)
         {
-            rz = "200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+            await robotController.SendCommand("RZ+,");
         }
 
         private async void btnRzup_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
         private async void btnRzdown_MouseDown(object sender, MouseEventArgs e)
         {
-            rz = "-200";
-            await robotController.MoveRobot(x, y, z, rx, ry, rz, fig);
+            await robotController.SendCommand("RZ-,");
         }
 
         private async void btnRzdown_MouseUp(object sender, MouseEventArgs e)
         {
-            await MouseUp();
+            await MouseUpPos();
         }
 
 
@@ -564,8 +578,138 @@ namespace WindowsFormsApp4
             await TrainRobotPickPlace(feature);
         }
 
+        // --------J1---------
+        private async void btnJ1Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            await robotController.SendCommand("J1+,");
+        }
+        private async void btnJ1Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        private async void btnJ1Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J1-,");
+        }
+
+        private async void btnJ1Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+        // --------J2---------
+        private async void btnJ2Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J2+,");
+        }
+
+        private async void btnJ2Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+        private async void btnJ2Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J2-,");
+        }
+
+        private async void btnJ2Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+        // --------J3---------
+
+        private async void btnJ3Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J3+,");
+        }
+
+        private async void btnJ3Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        private async void btnJ3Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J3-,");
+        }
+
+        private async void btnJ3Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        // --------J4---------
+        private async void btnJ4Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J4+,");
+        }
+
+        
+
+        private async void btnJ4Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+       
+
+        private async void btnJ4Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J4-,");
+        }
+
+        private async void btnJ4Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+        // --------J5---------
+
+        private async void btnJ5Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J5+,");
+        }
+
+        private async void btnJ5Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        private async void btnJ5Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J5-,");
+        }
+
+        private async void btnJ5Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        // --------J6---------
+
+        private async void btnJ6Plus_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            await robotController.SendCommand("J6+,");
+        }
+
+        private async void btnJ6Plus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
+
+        private async void btnJ6Minus_MouseDown(object sender, MouseEventArgs e)
+        {
+            await robotController.SendCommand("J6-,");
+        }
+
+        private async void btnJ6Minus_MouseUp(object sender, MouseEventArgs e)
+        {
+            await MouseUpJoint();
+        }
 
     }
+
 
 }
 

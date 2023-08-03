@@ -82,6 +82,32 @@
             this.btnDisconnectCam = new System.Windows.Forms.Button();
             this.btnConnectCam = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnGetCRJ = new System.Windows.Forms.Button();
+            this.txtJ6 = new System.Windows.Forms.TextBox();
+            this.txtJ5 = new System.Windows.Forms.TextBox();
+            this.txtJ4 = new System.Windows.Forms.TextBox();
+            this.txtJ3 = new System.Windows.Forms.TextBox();
+            this.txtJ2 = new System.Windows.Forms.TextBox();
+            this.txtJ1 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.btnJ6Minus = new System.Windows.Forms.Button();
+            this.btnJ4Minus = new System.Windows.Forms.Button();
+            this.btnJ6Plus = new System.Windows.Forms.Button();
+            this.btnJ4Plus = new System.Windows.Forms.Button();
+            this.btnJ2Minus = new System.Windows.Forms.Button();
+            this.btnJ5Minus = new System.Windows.Forms.Button();
+            this.btnJ3Minus = new System.Windows.Forms.Button();
+            this.btnJ5Plus = new System.Windows.Forms.Button();
+            this.btnJ2Plus = new System.Windows.Forms.Button();
+            this.btnJ3Plus = new System.Windows.Forms.Button();
+            this.btnJ1Minus = new System.Windows.Forms.Button();
+            this.btnJ1Plus = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnTrainRobotPlace = new System.Windows.Forms.Button();
             this.btnTrainRobotPick = new System.Windows.Forms.Button();
@@ -215,22 +241,20 @@
             // lbStatusRobot
             // 
             this.lbStatusRobot.AutoSize = true;
-            this.lbStatusRobot.Location = new System.Drawing.Point(593, 113);
+            this.lbStatusRobot.Location = new System.Drawing.Point(573, 113);
             this.lbStatusRobot.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStatusRobot.Name = "lbStatusRobot";
-            this.lbStatusRobot.Size = new System.Drawing.Size(73, 13);
+            this.lbStatusRobot.Size = new System.Drawing.Size(0, 13);
             this.lbStatusRobot.TabIndex = 68;
-            this.lbStatusRobot.Text = "Disconnected";
             // 
             // lbstatusCam
             // 
             this.lbstatusCam.AutoSize = true;
-            this.lbstatusCam.Location = new System.Drawing.Point(156, 113);
+            this.lbstatusCam.Location = new System.Drawing.Point(132, 113);
             this.lbstatusCam.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbstatusCam.Name = "lbstatusCam";
-            this.lbstatusCam.Size = new System.Drawing.Size(73, 13);
+            this.lbstatusCam.Size = new System.Drawing.Size(0, 13);
             this.lbstatusCam.TabIndex = 67;
-            this.lbstatusCam.Text = "Disconnected";
             // 
             // label20
             // 
@@ -577,7 +601,7 @@
             // 
             // txtRobotPort
             // 
-            this.txtRobotPort.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.txtRobotPort.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtRobotPort.Location = new System.Drawing.Point(546, 90);
             this.txtRobotPort.Margin = new System.Windows.Forms.Padding(2);
             this.txtRobotPort.Name = "txtRobotPort";
@@ -587,7 +611,7 @@
             // 
             // txtCamPort
             // 
-            this.txtCamPort.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.txtCamPort.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtCamPort.Location = new System.Drawing.Point(116, 90);
             this.txtCamPort.Margin = new System.Windows.Forms.Padding(2);
             this.txtCamPort.Name = "txtCamPort";
@@ -597,7 +621,7 @@
             // 
             // txtRobotIP
             // 
-            this.txtRobotIP.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.txtRobotIP.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtRobotIP.Location = new System.Drawing.Point(546, 63);
             this.txtRobotIP.Margin = new System.Windows.Forms.Padding(2);
             this.txtRobotIP.Name = "txtRobotIP";
@@ -617,7 +641,7 @@
             // 
             // txtCamIp
             // 
-            this.txtCamIp.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.txtCamIp.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtCamIp.Location = new System.Drawing.Point(116, 63);
             this.txtCamIp.Margin = new System.Windows.Forms.Padding(2);
             this.txtCamIp.Name = "txtCamIp";
@@ -680,6 +704,32 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnGetCRJ);
+            this.tabPage2.Controls.Add(this.txtJ6);
+            this.tabPage2.Controls.Add(this.txtJ5);
+            this.tabPage2.Controls.Add(this.txtJ4);
+            this.tabPage2.Controls.Add(this.txtJ3);
+            this.tabPage2.Controls.Add(this.txtJ2);
+            this.tabPage2.Controls.Add(this.txtJ1);
+            this.tabPage2.Controls.Add(this.label36);
+            this.tabPage2.Controls.Add(this.label35);
+            this.tabPage2.Controls.Add(this.label32);
+            this.tabPage2.Controls.Add(this.label34);
+            this.tabPage2.Controls.Add(this.label31);
+            this.tabPage2.Controls.Add(this.label33);
+            this.tabPage2.Controls.Add(this.label30);
+            this.tabPage2.Controls.Add(this.btnJ6Minus);
+            this.tabPage2.Controls.Add(this.btnJ4Minus);
+            this.tabPage2.Controls.Add(this.btnJ6Plus);
+            this.tabPage2.Controls.Add(this.btnJ4Plus);
+            this.tabPage2.Controls.Add(this.btnJ2Minus);
+            this.tabPage2.Controls.Add(this.btnJ5Minus);
+            this.tabPage2.Controls.Add(this.btnJ3Minus);
+            this.tabPage2.Controls.Add(this.btnJ5Plus);
+            this.tabPage2.Controls.Add(this.btnJ2Plus);
+            this.tabPage2.Controls.Add(this.btnJ3Plus);
+            this.tabPage2.Controls.Add(this.btnJ1Minus);
+            this.tabPage2.Controls.Add(this.btnJ1Plus);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.btnTrainRobotPlace);
             this.tabPage2.Controls.Add(this.btnTrainRobotPick);
@@ -718,9 +768,256 @@
             this.tabPage2.Text = "Train Robot";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnGetCRJ
+            // 
+            this.btnGetCRJ.Location = new System.Drawing.Point(261, 199);
+            this.btnGetCRJ.Name = "btnGetCRJ";
+            this.btnGetCRJ.Size = new System.Drawing.Size(75, 40);
+            this.btnGetCRJ.TabIndex = 12;
+            this.btnGetCRJ.Text = "GetCurJoint";
+            this.btnGetCRJ.UseVisualStyleBackColor = true;
+            this.btnGetCRJ.Click += new System.EventHandler(this.btnGetCRJ_Click);
+            // 
+            // txtJ6
+            // 
+            this.txtJ6.Location = new System.Drawing.Point(179, 347);
+            this.txtJ6.Name = "txtJ6";
+            this.txtJ6.Size = new System.Drawing.Size(49, 20);
+            this.txtJ6.TabIndex = 11;
+            // 
+            // txtJ5
+            // 
+            this.txtJ5.Location = new System.Drawing.Point(179, 318);
+            this.txtJ5.Name = "txtJ5";
+            this.txtJ5.Size = new System.Drawing.Size(49, 20);
+            this.txtJ5.TabIndex = 11;
+            // 
+            // txtJ4
+            // 
+            this.txtJ4.Location = new System.Drawing.Point(179, 289);
+            this.txtJ4.Name = "txtJ4";
+            this.txtJ4.Size = new System.Drawing.Size(49, 20);
+            this.txtJ4.TabIndex = 11;
+            // 
+            // txtJ3
+            // 
+            this.txtJ3.Location = new System.Drawing.Point(179, 260);
+            this.txtJ3.Name = "txtJ3";
+            this.txtJ3.Size = new System.Drawing.Size(49, 20);
+            this.txtJ3.TabIndex = 11;
+            // 
+            // txtJ2
+            // 
+            this.txtJ2.Location = new System.Drawing.Point(179, 230);
+            this.txtJ2.Name = "txtJ2";
+            this.txtJ2.Size = new System.Drawing.Size(49, 20);
+            this.txtJ2.TabIndex = 11;
+            // 
+            // txtJ1
+            // 
+            this.txtJ1.Location = new System.Drawing.Point(179, 201);
+            this.txtJ1.Name = "txtJ1";
+            this.txtJ1.Size = new System.Drawing.Size(49, 20);
+            this.txtJ1.TabIndex = 11;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(116, 174);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(29, 13);
+            this.label36.TabIndex = 10;
+            this.label36.Text = "Joint";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(60, 350);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(18, 13);
+            this.label35.TabIndex = 9;
+            this.label35.Text = "J6";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(60, 263);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(18, 13);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "J3";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(60, 321);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(18, 13);
+            this.label34.TabIndex = 9;
+            this.label34.Text = "J5";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(60, 233);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(18, 13);
+            this.label31.TabIndex = 9;
+            this.label31.Text = "J2";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(60, 292);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(18, 13);
+            this.label33.TabIndex = 9;
+            this.label33.Text = "J4";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(60, 204);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(18, 13);
+            this.label30.TabIndex = 9;
+            this.label30.Text = "J1";
+            // 
+            // btnJ6Minus
+            // 
+            this.btnJ6Minus.Location = new System.Drawing.Point(134, 345);
+            this.btnJ6Minus.Name = "btnJ6Minus";
+            this.btnJ6Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ6Minus.TabIndex = 8;
+            this.btnJ6Minus.Text = "-";
+            this.btnJ6Minus.UseVisualStyleBackColor = true;
+            this.btnJ6Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ6Minus_MouseDown);
+            this.btnJ6Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ6Minus_MouseUp);
+            // 
+            // btnJ4Minus
+            // 
+            this.btnJ4Minus.Location = new System.Drawing.Point(134, 287);
+            this.btnJ4Minus.Name = "btnJ4Minus";
+            this.btnJ4Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ4Minus.TabIndex = 8;
+            this.btnJ4Minus.Text = "-";
+            this.btnJ4Minus.UseVisualStyleBackColor = true;
+            this.btnJ4Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ4Minus_MouseDown);
+            this.btnJ4Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ4Minus_MouseUp);
+            // 
+            // btnJ6Plus
+            // 
+            this.btnJ6Plus.Location = new System.Drawing.Point(98, 345);
+            this.btnJ6Plus.Name = "btnJ6Plus";
+            this.btnJ6Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ6Plus.TabIndex = 8;
+            this.btnJ6Plus.Text = "+";
+            this.btnJ6Plus.UseVisualStyleBackColor = true;
+            this.btnJ6Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ6Plus_MouseDown);
+            this.btnJ6Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ6Plus_MouseUp);
+            // 
+            // btnJ4Plus
+            // 
+            this.btnJ4Plus.Location = new System.Drawing.Point(98, 287);
+            this.btnJ4Plus.Name = "btnJ4Plus";
+            this.btnJ4Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ4Plus.TabIndex = 8;
+            this.btnJ4Plus.Text = "+";
+            this.btnJ4Plus.UseVisualStyleBackColor = true;
+            this.btnJ4Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ4Plus_MouseDown);
+            this.btnJ4Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ4Plus_MouseUp);
+            // 
+            // btnJ2Minus
+            // 
+            this.btnJ2Minus.Location = new System.Drawing.Point(134, 228);
+            this.btnJ2Minus.Name = "btnJ2Minus";
+            this.btnJ2Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ2Minus.TabIndex = 8;
+            this.btnJ2Minus.Text = "-";
+            this.btnJ2Minus.UseVisualStyleBackColor = true;
+            this.btnJ2Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ2Minus_MouseDown);
+            this.btnJ2Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ2Minus_MouseUp);
+            // 
+            // btnJ5Minus
+            // 
+            this.btnJ5Minus.Location = new System.Drawing.Point(134, 316);
+            this.btnJ5Minus.Name = "btnJ5Minus";
+            this.btnJ5Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ5Minus.TabIndex = 8;
+            this.btnJ5Minus.Text = "-";
+            this.btnJ5Minus.UseVisualStyleBackColor = true;
+            this.btnJ5Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ5Minus_MouseDown);
+            this.btnJ5Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ5Minus_MouseUp);
+            // 
+            // btnJ3Minus
+            // 
+            this.btnJ3Minus.Location = new System.Drawing.Point(134, 258);
+            this.btnJ3Minus.Name = "btnJ3Minus";
+            this.btnJ3Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ3Minus.TabIndex = 8;
+            this.btnJ3Minus.Text = "-";
+            this.btnJ3Minus.UseVisualStyleBackColor = true;
+            this.btnJ3Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ3Minus_MouseDown);
+            this.btnJ3Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ3Minus_MouseUp);
+            // 
+            // btnJ5Plus
+            // 
+            this.btnJ5Plus.Location = new System.Drawing.Point(98, 316);
+            this.btnJ5Plus.Name = "btnJ5Plus";
+            this.btnJ5Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ5Plus.TabIndex = 8;
+            this.btnJ5Plus.Text = "+";
+            this.btnJ5Plus.UseVisualStyleBackColor = true;
+            this.btnJ5Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ5Plus_MouseDown);
+            this.btnJ5Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ5Plus_MouseUp);
+            // 
+            // btnJ2Plus
+            // 
+            this.btnJ2Plus.Location = new System.Drawing.Point(98, 228);
+            this.btnJ2Plus.Name = "btnJ2Plus";
+            this.btnJ2Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ2Plus.TabIndex = 8;
+            this.btnJ2Plus.Text = "+";
+            this.btnJ2Plus.UseVisualStyleBackColor = true;
+            this.btnJ2Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ2Plus_MouseDown);
+            this.btnJ2Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ2Plus_MouseUp);
+            // 
+            // btnJ3Plus
+            // 
+            this.btnJ3Plus.Location = new System.Drawing.Point(98, 258);
+            this.btnJ3Plus.Name = "btnJ3Plus";
+            this.btnJ3Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ3Plus.TabIndex = 8;
+            this.btnJ3Plus.Text = "+";
+            this.btnJ3Plus.UseVisualStyleBackColor = true;
+            this.btnJ3Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ3Plus_MouseDown);
+            this.btnJ3Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ3Plus_MouseUp);
+            // 
+            // btnJ1Minus
+            // 
+            this.btnJ1Minus.Location = new System.Drawing.Point(134, 199);
+            this.btnJ1Minus.Name = "btnJ1Minus";
+            this.btnJ1Minus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ1Minus.TabIndex = 8;
+            this.btnJ1Minus.Text = "-";
+            this.btnJ1Minus.UseVisualStyleBackColor = true;
+            this.btnJ1Minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ1Minus_MouseDown);
+            this.btnJ1Minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ1Minus_MouseUp);
+            // 
+            // btnJ1Plus
+            // 
+            this.btnJ1Plus.Location = new System.Drawing.Point(98, 199);
+            this.btnJ1Plus.Name = "btnJ1Plus";
+            this.btnJ1Plus.Size = new System.Drawing.Size(30, 23);
+            this.btnJ1Plus.TabIndex = 8;
+            this.btnJ1Plus.Text = "+";
+            this.btnJ1Plus.UseVisualStyleBackColor = true;
+            this.btnJ1Plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJ1Plus_MouseDown);
+            this.btnJ1Plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJ1Plus_MouseUp);
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(60, 269);
+            this.textBox1.Location = new System.Drawing.Point(376, 466);
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(394, 20);
@@ -728,7 +1025,7 @@
             // 
             // btnTrainRobotPlace
             // 
-            this.btnTrainRobotPlace.Location = new System.Drawing.Point(376, 212);
+            this.btnTrainRobotPlace.Location = new System.Drawing.Point(692, 409);
             this.btnTrainRobotPlace.Name = "btnTrainRobotPlace";
             this.btnTrainRobotPlace.Size = new System.Drawing.Size(78, 45);
             this.btnTrainRobotPlace.TabIndex = 6;
@@ -738,7 +1035,7 @@
             // 
             // btnTrainRobotPick
             // 
-            this.btnTrainRobotPick.Location = new System.Drawing.Point(147, 212);
+            this.btnTrainRobotPick.Location = new System.Drawing.Point(463, 409);
             this.btnTrainRobotPick.Name = "btnTrainRobotPick";
             this.btnTrainRobotPick.Size = new System.Drawing.Size(79, 45);
             this.btnTrainRobotPick.TabIndex = 6;
@@ -748,7 +1045,7 @@
             // 
             // btnTrainVisionPlace
             // 
-            this.btnTrainVisionPlace.Location = new System.Drawing.Point(290, 212);
+            this.btnTrainVisionPlace.Location = new System.Drawing.Point(606, 409);
             this.btnTrainVisionPlace.Name = "btnTrainVisionPlace";
             this.btnTrainVisionPlace.Size = new System.Drawing.Size(79, 46);
             this.btnTrainVisionPlace.TabIndex = 6;
@@ -758,7 +1055,7 @@
             // 
             // btnTrainVisionPick
             // 
-            this.btnTrainVisionPick.Location = new System.Drawing.Point(60, 212);
+            this.btnTrainVisionPick.Location = new System.Drawing.Point(376, 409);
             this.btnTrainVisionPick.Name = "btnTrainVisionPick";
             this.btnTrainVisionPick.Size = new System.Drawing.Size(81, 46);
             this.btnTrainVisionPick.TabIndex = 6;
@@ -902,7 +1199,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(26, 85);
+            this.label21.Location = new System.Drawing.Point(108, 59);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(56, 13);
             this.label21.TabIndex = 1;
@@ -911,7 +1208,7 @@
             // btnRzdown
             // 
             this.btnRzdown.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnRzdown.Location = new System.Drawing.Point(341, 95);
+            this.btnRzdown.Location = new System.Drawing.Point(423, 69);
             this.btnRzdown.Name = "btnRzdown";
             this.btnRzdown.Size = new System.Drawing.Size(75, 23);
             this.btnRzdown.TabIndex = 0;
@@ -923,7 +1220,7 @@
             // btnYdown
             // 
             this.btnYdown.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnYdown.Location = new System.Drawing.Point(179, 95);
+            this.btnYdown.Location = new System.Drawing.Point(261, 69);
             this.btnYdown.Name = "btnYdown";
             this.btnYdown.Size = new System.Drawing.Size(75, 23);
             this.btnYdown.TabIndex = 0;
@@ -935,7 +1232,7 @@
             // btnRzup
             // 
             this.btnRzup.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnRzup.Location = new System.Drawing.Point(341, 66);
+            this.btnRzup.Location = new System.Drawing.Point(423, 40);
             this.btnRzup.Name = "btnRzup";
             this.btnRzup.Size = new System.Drawing.Size(75, 23);
             this.btnRzup.TabIndex = 0;
@@ -947,7 +1244,7 @@
             // btnZdown
             // 
             this.btnZdown.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnZdown.Location = new System.Drawing.Point(260, 95);
+            this.btnZdown.Location = new System.Drawing.Point(342, 69);
             this.btnZdown.Name = "btnZdown";
             this.btnZdown.Size = new System.Drawing.Size(75, 23);
             this.btnZdown.TabIndex = 0;
@@ -959,7 +1256,7 @@
             // btnYup
             // 
             this.btnYup.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnYup.Location = new System.Drawing.Point(179, 66);
+            this.btnYup.Location = new System.Drawing.Point(261, 40);
             this.btnYup.Name = "btnYup";
             this.btnYup.Size = new System.Drawing.Size(75, 23);
             this.btnYup.TabIndex = 0;
@@ -971,7 +1268,7 @@
             // btnZup
             // 
             this.btnZup.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnZup.Location = new System.Drawing.Point(260, 66);
+            this.btnZup.Location = new System.Drawing.Point(342, 40);
             this.btnZup.Name = "btnZup";
             this.btnZup.Size = new System.Drawing.Size(75, 23);
             this.btnZup.TabIndex = 0;
@@ -983,7 +1280,7 @@
             // btnXdown
             // 
             this.btnXdown.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnXdown.Location = new System.Drawing.Point(98, 95);
+            this.btnXdown.Location = new System.Drawing.Point(180, 69);
             this.btnXdown.Name = "btnXdown";
             this.btnXdown.Size = new System.Drawing.Size(75, 23);
             this.btnXdown.TabIndex = 0;
@@ -995,13 +1292,12 @@
             // btnXup
             // 
             this.btnXup.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnXup.Location = new System.Drawing.Point(98, 66);
+            this.btnXup.Location = new System.Drawing.Point(180, 40);
             this.btnXup.Name = "btnXup";
             this.btnXup.Size = new System.Drawing.Size(75, 23);
             this.btnXup.TabIndex = 0;
             this.btnXup.Text = "X +";
             this.btnXup.UseVisualStyleBackColor = false;
-           // this.btnXup.Click += new System.EventHandler(this.btnXup_Click);
             this.btnXup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseDown);
             this.btnXup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnXup_MouseUp);
             // 
@@ -1109,6 +1405,32 @@
         private System.Windows.Forms.Button btnTrainVisionPick;
         private System.Windows.Forms.Button btnTrainVisionPlace;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btnJ6Minus;
+        private System.Windows.Forms.Button btnJ4Minus;
+        private System.Windows.Forms.Button btnJ6Plus;
+        private System.Windows.Forms.Button btnJ4Plus;
+        private System.Windows.Forms.Button btnJ2Minus;
+        private System.Windows.Forms.Button btnJ5Minus;
+        private System.Windows.Forms.Button btnJ3Minus;
+        private System.Windows.Forms.Button btnJ5Plus;
+        private System.Windows.Forms.Button btnJ2Plus;
+        private System.Windows.Forms.Button btnJ3Plus;
+        private System.Windows.Forms.Button btnJ1Minus;
+        private System.Windows.Forms.Button btnJ1Plus;
+        private System.Windows.Forms.TextBox txtJ6;
+        private System.Windows.Forms.TextBox txtJ5;
+        private System.Windows.Forms.TextBox txtJ4;
+        private System.Windows.Forms.TextBox txtJ3;
+        private System.Windows.Forms.TextBox txtJ2;
+        private System.Windows.Forms.TextBox txtJ1;
+        private System.Windows.Forms.Button btnGetCRJ;
     }
 }
 
