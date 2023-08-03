@@ -103,7 +103,7 @@ namespace WindowsFormsApp4
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể nhận dữ liệu từ camera. Lỗi: " + ex.Message);
+                    MessageBox.Show("Không thể nhận dữ liệu từ ROBOT. Lỗi: " + ex.Message);
                 }
             }
             else
@@ -122,9 +122,6 @@ namespace WindowsFormsApp4
 
                 try
                 {
-
-                    string TakeCurrenPos = "CRP,";
-                    await SendCommand(TakeCurrenPos);
                     string receivedDataRobot = await ReceiveData(buffer);
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
@@ -143,7 +140,7 @@ namespace WindowsFormsApp4
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
+                    //MessageBox.Show("Không thể gửi lệnh đến ROBOT(@@). Lỗi: " + ex.Message);
                 }
             }
             else
@@ -160,13 +157,10 @@ namespace WindowsFormsApp4
 
                 try
                 {
-
-                    string TakeCurrenPos = "CRJ,";
-                    await SendCommand(TakeCurrenPos);
                     string receivedDataRobot = await ReceiveData(buffer);
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
-                    if (commandLinesRobot.Length >= 6)
+                    if (commandLinesRobot.Length >= 5)
                     {
                         j1 = commandLinesRobot[0];
                         j2 = commandLinesRobot[1];
@@ -181,7 +175,7 @@ namespace WindowsFormsApp4
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
+                    MessageBox.Show("Không thể gửi lệnh đến ROBOT(?). Lỗi: " + ex.Message);
                 }
             }
             else

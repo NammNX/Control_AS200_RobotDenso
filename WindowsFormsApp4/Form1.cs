@@ -230,6 +230,7 @@ namespace WindowsFormsApp4
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
+            await robotController.SendCommand("CRP,");
             await robotController.GetRobotCurrentPosition();
 
             txtMinX.Text = robotController.x;
@@ -364,6 +365,11 @@ namespace WindowsFormsApp4
             txtRy2.Text = ry;
             txtRz.Text = rz;
             txtFig2.Text = fig;
+           
+        }
+        private void UpdateUIComponentsJoint()
+        {
+            
             txtJ1.Text = j1;
             txtJ2.Text = j2;
             txtJ3.Text = j3;
@@ -371,10 +377,8 @@ namespace WindowsFormsApp4
             txtJ5.Text = j5;
             txtJ6.Text = j6;
 
-            
         }
-
-        private async void btnGetCurPos2_Click(object sender, EventArgs e)
+        private async Task UpdateCurrentPost()
         {
             await robotController.GetRobotCurrentPosition();
             x = robotController.x;
@@ -386,10 +390,9 @@ namespace WindowsFormsApp4
             fig = robotController.fig;
 
             UpdateUIComponents();
-
         }
 
-        private async void btnGetCRJ_Click(object sender, EventArgs e)
+        private async Task UpdateCurrentJoint()
         {
             await robotController.GetRobotCurrentJoint();
             j1 = robotController.j1;
@@ -398,16 +401,25 @@ namespace WindowsFormsApp4
             j4 = robotController.j4;
             j5 = robotController.j5;
             j6 = robotController.j6;
-            UpdateUIComponents();
+            UpdateUIComponentsJoint();
+        }
 
 
+        private async void btnGetCurPos2_Click(object sender, EventArgs e)
+        {
+            await robotController.SendCommand("CRP,");
+            await UpdateCurrentPost();
+        }
+
+        private async void btnGetCRJ_Click(object sender, EventArgs e)
+        {
+            await UpdateCurrentJoint();
         }
 
 
 
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
-          
 
             await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRy2.Text, txtRz.Text, txtFig2.Text);
             await Task.Delay(200);
@@ -419,16 +431,15 @@ namespace WindowsFormsApp4
        private async Task MouseUpPos()
         {
             await robotController.SendCommand("OK,");
-            await Task.Delay(200);
-            btnGetCurPos2.PerformClick();
+           
+            await UpdateCurrentPost();
 
         }
         private async Task MouseUpJoint()
         {
             await robotController.SendCommand("OK,");
-            await Task.Delay(200);
-            btnGetCRJ.PerformClick();
-
+         
+            await UpdateCurrentJoint();
         }
 
         //move X -----------------------------------------------------
