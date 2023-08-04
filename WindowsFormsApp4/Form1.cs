@@ -20,6 +20,7 @@ namespace WindowsFormsApp4
         private RobotController robotController;
         string x, y, z, rx, ry, rz, fig;
         string j1,j2, j3, j4,j5,j6;
+        
         //private TcpClient robotClient;
         //private TcpClient cameraClient;
 
@@ -41,52 +42,112 @@ namespace WindowsFormsApp4
             cameraController.DisconnectCamera();
         }
 
-        private void btnConnectRobot_Click(object sender, EventArgs e)
-        {
-            string ipAddress = txtRobotIP.Text;
-            int port = int.Parse(txtRobotPort.Text);
-            robotController.ConnectRobot(ipAddress, port);
-            if (robotController.IsConnected)
-            {
-                lbStatusRobot.Text = "Connected";
-                btnConnectRobot.Enabled = false;
-            }
-            else {
-                lbStatusRobot.Text = "Connection closed";
-                btnConnectRobot.Enabled = true;
-            }
-        }
+        private bool IsconnectCam = false;
+        private bool IsConnectRobot = false;
 
-        private void btnDisconnectRobot_Click(object sender, EventArgs e)
+        private void btnConnectCamera_Click(object sender, EventArgs e)
         {
-            robotController.DisConnectRobot();
-            btnConnectRobot.Enabled = true;
-            lbStatusRobot.Text = "Connection closed";
-        }
-
-        private void btnConnectCam_Click(object sender, EventArgs e)
-        {
-            string ipAddress = txtCamIp.Text;
-            int port = int.Parse(txtCamPort.Text);
-            cameraController.ConnectCamera(ipAddress, port);
-            if (cameraController.IsConnected)
+            if (!IsconnectCam)
             {
-                lbstatusCam.Text = "Connected";
-                btnConnectCam.Enabled = false;
+                string ipAddress = txtCamIp.Text;
+                int port = int.Parse(txtCamPort.Text);
+                cameraController.ConnectCamera(ipAddress, port);
+                if (cameraController.IsConnected)
+                {
+                    btnConnectCamera.Text = "Disconnect";
+                    btnConnectCamera.BackColor = Color.Red;
+                    IsconnectCam = true;
+
+
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
-                lbstatusCam.Text = "Connection closed";
-                btnConnectCam.Enabled = true;
+                cameraController.DisconnectCamera();
+                IsconnectCam = false;
+                btnConnectCamera.Text = "Connect";
+                btnConnectCamera.BackColor = Color.Green;
             }
+        }
 
-        }
-        private void btnDisconnect_Click(object sender, EventArgs e)
+        private void btnRobotConnect_Click(object sender, EventArgs e)
         {
-            cameraController.DisconnectCamera();
-            btnConnectCam.Enabled = true;
-            lbstatusCam.Text = "Connection closed";
+            if (!IsConnectRobot)
+            {
+                string ipAddress = txtRobotIP.Text;
+                int port = int.Parse(txtRobotPort.Text);
+                robotController.ConnectRobot(ipAddress, port);
+                if (robotController.IsConnected)
+                {
+                    btnRobotConnect.Text = "Disconnect";
+                    btnRobotConnect.BackColor = Color.Red;
+                    IsConnectRobot = true;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                robotController.DisConnectRobot();
+                IsConnectRobot = false;
+                btnRobotConnect.Text = "Connect";
+                btnRobotConnect.BackColor = Color.Green;
+            }
         }
+
+
+        //private void btnConnectRobot_Click(object sender, EventArgs e)
+        //{
+        //    string ipAddress = txtRobotIP.Text;
+        //    int port = int.Parse(txtRobotPort.Text);
+        //    robotController.ConnectRobot(ipAddress, port);
+        //    if (robotController.IsConnected)
+        //    {
+        //        lbStatusRobot.Text = "Connected";
+        //        btnConnectRobots.Enabled = false;
+        //    }
+        //    else {
+        //        lbStatusRobot.Text = "Connection closed";
+        //        btnConnectRobots.Enabled = true;
+        //    }
+        //}
+
+        //private void btnDisconnectRobot_Click(object sender, EventArgs e)
+        //{
+        //    robotController.DisConnectRobot();
+        //    btnConnectRobots.Enabled = true;
+        //    lbStatusRobot.Text = "Connection closed";
+        //}
+
+        //private void btnConnectCam_Click(object sender, EventArgs e)
+        //{
+        //    string ipAddress = txtCamIp.Text;
+        //    int port = int.Parse(txtCamPort.Text);
+        //    cameraController.ConnectCamera(ipAddress, port);
+        //    if (cameraController.IsConnected)
+        //    {
+        //        lbstatusCam.Text = "Connected";
+        //        btnConnectCam.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        lbstatusCam.Text = "Connection closed";
+        //        btnConnectCam.Enabled = true;
+        //    }
+
+        //}
+        //private void btnDisconnect_Click(object sender, EventArgs e)
+        //{
+        //    cameraController.DisconnectCamera();
+        //    btnConnectCam.Enabled = true;
+        //    lbstatusCam.Text = "Connection closed";
+        //}
 
 
 
@@ -355,7 +416,7 @@ namespace WindowsFormsApp4
 
             }
             else { MessageBox.Show("Kết nối Cam và Robot trước khi Calib"); }
-        }
+        }  // Auto HandEye
         private void UpdateUIComponents()
         {
             txtX.Text = x;
@@ -430,18 +491,18 @@ namespace WindowsFormsApp4
         
        private async Task MouseUpPos()
         {
-            await robotController.SendCommand("OK,");
-           
+            await robotController.SendCommand("OK,"); 
             await UpdateCurrentPost();
 
         }
         private async Task MouseUpJoint()
         {
             await robotController.SendCommand("OK,");
-         
             await UpdateCurrentJoint();
         }
 
+
+        #region Move XYZ
         //move X -----------------------------------------------------
         private async void btnXup_MouseDown(object sender, MouseEventArgs e)
         {
@@ -530,65 +591,12 @@ namespace WindowsFormsApp4
         }
 
 
-        private async Task TrainVisionPickPlace(int feature)
-        {
-            double.TryParse(txtX.Text, out double x);
-            double.TryParse(txtY.Text, out double y);
-            double.TryParse(txtZ2.Text, out double z);
-            double.TryParse(txtRx2.Text, out double rx);
-            double.TryParse(txtRy2.Text, out double ry);
-            double.TryParse(txtRz.Text, out double rz);
 
-            string command = $"TT,{feature},{x},{y},{z},{rz},{ry},{rx}";
-            await cameraController.SendCommand(command);
+        #endregion
 
-            byte[] buffer = new byte[1024];
-            await cameraController.ReceiveData(buffer);
-        }
 
-        private async Task TrainRobotPickPlace(int feature)
-        {
-            double.TryParse(txtX.Text, out double x);
-            double.TryParse(txtY.Text, out double y);
-            double.TryParse(txtZ2.Text, out double z);
-            double.TryParse(txtRx2.Text, out double rx);
-            double.TryParse(txtRy2.Text, out double ry);
-            double.TryParse(txtRz.Text, out double rz);
 
-            string command = $"TTR,{feature},{x},{y},{z},{rz},{ry},{rx}";
-            await cameraController.SendCommand(command);
-
-            byte[] buffer = new byte[1024];
-            await cameraController.ReceiveData(buffer);
-        }
-        // Train điểm gắp, lấy điểm chụp là feature 1
-        private async void btnTrainVisionPick_Click(object sender, EventArgs e)
-        {
-
-            int feature = 1;
-            await TrainVisionPickPlace(feature);
-        }
-
-        private async void btnTrainRobotPick_Click(object sender, EventArgs e)
-        {
-            int feature = 1;
-            await TrainRobotPickPlace(feature);
-        }
-
-        // Train điểm thả, lấy điểm gắp là feature 2
-        private async void btnTrainVisionPlace_Click(object sender, EventArgs e)
-        {
-            int feature = 2;
-            await TrainVisionPickPlace(feature);
-
-        }
-
-        private async void btnTrainRobotPlace_Click(object sender, EventArgs e)
-        {
-            int feature = 2;
-            await TrainRobotPickPlace(feature);
-        }
-
+        #region Move Joint
         // --------J1---------
         private async void btnJ1Plus_MouseDown(object sender, MouseEventArgs e)
         {
@@ -656,7 +664,7 @@ namespace WindowsFormsApp4
             await robotController.SendCommand("J4+,");
         }
 
-        
+       
 
         private async void btnJ4Plus_MouseUp(object sender, MouseEventArgs e)
         {
@@ -681,6 +689,8 @@ namespace WindowsFormsApp4
             await robotController.SendCommand("J5+,");
         }
 
+       
+
         private async void btnJ5Plus_MouseUp(object sender, MouseEventArgs e)
         {
             await MouseUpJoint();
@@ -690,6 +700,8 @@ namespace WindowsFormsApp4
         {
             await robotController.SendCommand("J5-,");
         }
+
+       
 
         private async void btnJ5Minus_MouseUp(object sender, MouseEventArgs e)
         {
@@ -718,10 +730,149 @@ namespace WindowsFormsApp4
         {
             await MouseUpJoint();
         }
+        #endregion
 
+
+        #region Train Robot
+        private async Task TrainVisionPoint()
+        {
+
+
+            double.TryParse(txtX.Text, out double x);
+            double.TryParse(txtY.Text, out double y);
+            double.TryParse(txtZ2.Text, out double z);
+            double.TryParse(txtRx2.Text, out double rx);
+            double.TryParse(txtRy2.Text, out double ry);
+            double.TryParse(txtRz.Text, out double rz);
+            string Feature = cbFeature.Text;
+            
+                string command = $"TT,{Feature},{x},{y},{z},{rz},{ry},{rx}";
+
+                await cameraController.SendCommand(command);
+           
+           
+
+        }
+
+        private async Task TrainRobotPickPlace()
+        {
+            double.TryParse(txtX.Text, out double x);
+            double.TryParse(txtY.Text, out double y);
+            double.TryParse(txtZ2.Text, out double z);
+            double.TryParse(txtRx2.Text, out double rx);
+            double.TryParse(txtRy2.Text, out double ry);
+            double.TryParse(txtRz.Text, out double rz);
+            string Feature = cbFeature.Text;
+           
+                string command = $"TTR,{Feature},{x},{y},{z},{rz},{ry},{rx}";
+                await cameraController.SendCommand(command);
+            
+           
+           
+
+        }
+
+        private async void btnTrainVisionPoint_Click(object sender, EventArgs e)
+        {
+            if (cameraController.IsConnected)
+            {
+                if (cbFeature.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Chọn Feature trước khi Train", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    btnTrainVisionPoint.Enabled = false;
+                    await TrainVisionPoint();
+
+                    byte[] buffer = new byte[1024];
+                    string DataReceive = await cameraController.ReceiveData(buffer);
+                    if (DataReceive.Contains("TT,1"))
+                    {
+                       
+                        MessageBox.Show("Train Success", "Thông báo", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                       
+                        MessageBox.Show("Train Fail", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    btnTrainVisionPoint.Enabled = true;
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Camera chưa kết nối");
+            }
+        }
+
+        private async void btnTrainPickPlace_Click(object sender, EventArgs e)
+        {
+
+            if (!cameraController.IsConnected)
+            {
+                MessageBox.Show("Camera chưa kết nối");
+                return;
+            }
+
+            if (cbFeature.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chọn Feature trước khi Train", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            btnTrainPickPlace.Enabled = false;
+            await TrainRobotPickPlace();
+
+            byte[] buffer = new byte[1024];
+            string DataReceive = await cameraController.ReceiveData(buffer);
+            if (DataReceive.Contains("TTR,1"))
+            {
+                MessageBox.Show("Train Success", "Thông báo", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Train Fail", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            btnTrainPickPlace.Enabled = true;
+
+        }
+
+        #endregion
+        private bool isToolOn = false;
+
+        private async void btnOnOffTool_Click(object sender, EventArgs e)
+        {
+            if (!robotController.IsConnected)
+            {
+                MessageBox.Show("Robot chưa kết nối");
+                return;
+            }
+
+            if (!isToolOn)
+            {
+                await robotController.SendCommand("OnTool");
+                isToolOn = true;
+                btnOnOffTool.Text = "OFF Tool";
+                btnOnOffTool.BackColor = Color.Red;
+            }
+            else
+            {
+                await robotController.SendCommand("OffTool");
+                isToolOn = false;
+                btnOnOffTool.Text = "ON Tool";
+                btnOnOffTool.BackColor = Color.Green;
+
+            }
+        }
     }
 
 
 }
+
+
 
 
