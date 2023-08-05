@@ -44,8 +44,11 @@ namespace WindowsFormsApp4
 
         public async Task SendCommand(string command)
         {
-            if (IsConnected)
-            {
+            if (!IsConnected)
+            { 
+                MessageBox.Show("Camera chưa được kết nối!");
+                return; 
+            }
                 try
                 {
                     string commandWithNewLine = command + "\r\n";
@@ -60,11 +63,7 @@ namespace WindowsFormsApp4
                 {
                     MessageBox.Show("Không thể gửi lệnh đến camera. Lỗi: " + ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Camera chưa được kết nối!");
-            }
+           
 
         }
 

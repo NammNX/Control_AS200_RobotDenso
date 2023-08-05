@@ -57,8 +57,11 @@ namespace WindowsFormsApp4
         }
         public async Task SendCommand(string command)
         {
-            if (IsConnected)
-            {
+            if (!IsConnected)
+            { 
+                MessageBox.Show("Robot chưa được kết nối!");
+                return;
+            }
                 try
                 {
                     byte[] dataRobot = Encoding.ASCII.GetBytes(command);
@@ -72,11 +75,7 @@ namespace WindowsFormsApp4
                 {
                     MessageBox.Show("Không thể gửi lệnh đến robot. Lỗi: " + ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Robot chưa được kết nối!");
-            }
+
         }
 
         public async Task<string> ReceiveData(byte[] buffer)
@@ -109,6 +108,7 @@ namespace WindowsFormsApp4
             else
             {
                 MessageBox.Show("Camera chưa được kết nối!");
+
             }
 
             return string.Empty;
@@ -116,8 +116,11 @@ namespace WindowsFormsApp4
 
         public async Task GetRobotCurrentPosition()
         {
-            if (IsConnected)
-            {
+            if (!IsConnected)
+            { 
+                MessageBox.Show("Kết nối robot !");
+                return;
+            }    
                 byte[] buffer = new byte[1024];
 
                 try
@@ -134,7 +137,6 @@ namespace WindowsFormsApp4
                         ry = commandLinesRobot[4];
                         rz = commandLinesRobot[5];
                         fig = commandLinesRobot[6];
-
                     }
                 }
 
@@ -142,17 +144,16 @@ namespace WindowsFormsApp4
                 {
                     //MessageBox.Show("Không thể gửi lệnh đến ROBOT(@@). Lỗi: " + ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Kết nối robot !");
-            }
+           
         }
 
         public async Task GetRobotCurrentJoint()
         {
-            if (IsConnected)
+            if (!IsConnected)
             {
+                MessageBox.Show("Kết nối robot !");
+                return;
+            }
                 byte[] buffer = new byte[1024];
 
                 try
@@ -168,7 +169,6 @@ namespace WindowsFormsApp4
                         j4 = commandLinesRobot[3];
                         j5 = commandLinesRobot[4];
                         j6 = commandLinesRobot[5];
-                        
 
                     }
                 }
@@ -177,19 +177,17 @@ namespace WindowsFormsApp4
                 {
                     MessageBox.Show("Không thể gửi lệnh đến ROBOT(?). Lỗi: " + ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Kết nối robot !");
-            }
+           
         }
         public async Task MoveRobot(string x, string y, string z, string rx, string ry, string rz, string fig)
         {
 
-            string PosRobot = $"{x},{y},{z},{rx},{ry},{rz},{fig},";
-            //NetworkStream robotStream = robotClient.GetStream();
-            if (IsConnected)
+            var PosRobot = $"{x},{y},{z},{rx},{ry},{rz},{fig},";
+            if (!IsConnected)
             {
+                MessageBox.Show("Kết nối robot !");
+                return; 
+            }
                 await SendCommand("ROBOTMOVE,");
                 await Task.Delay(20);
                 await SendCommand(PosRobot);
@@ -197,18 +195,5 @@ namespace WindowsFormsApp4
             }
         }
 
-        //public async Task MoveJoint(string j1, string j2, string j3, string j4, string j5, string j6)
-        //{
-        //    string JointRobot = $"{j1},{j2},{j3},{j4},{j5},{j6},";
-        //    //NetworkStream robotStream = robotClient.GetStream();
-        //    if (IsConnected)
-        //    {
-        //        await SendCommand("MoveJoint,");
-        //        await Task.Delay(20);
-        //        await SendCommand(JointRobot);
-
-        //    }
-
-        //}
+       
     }
-}
