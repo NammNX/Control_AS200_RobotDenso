@@ -99,6 +99,11 @@ namespace WindowsFormsApp4
             }
         }
 
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private async void btnSend_Click(object sender, EventArgs e)
         {
 
@@ -108,6 +113,8 @@ namespace WindowsFormsApp4
             await cameraController.ReceiveData(buffer);
 
         }
+
+        
 
         private async Task RunHE(double minX, double maxX, int stepX, double minY, double maxY, int stepY,
                                    double minT, double maxT, int stepT, double z, double Rx, double Ry,
@@ -135,98 +142,6 @@ namespace WindowsFormsApp4
             }
         }
 
-        private async void btnHE_Click(object sender, EventArgs e)
-        {
-
-            btnHE.Enabled = false;
-
-            if (
-            !double.TryParse(txtMinX.Text, out double minX) ||
-            !double.TryParse(txtMaxX.Text, out double maxX) ||
-            !int.TryParse(txtStepX.Text, out int stepX) ||
-            !double.TryParse(txtMinY.Text, out double minY) ||
-            !double.TryParse(txtMaxY.Text, out double maxY) ||
-            !int.TryParse(txtStepY.Text, out int stepY) ||
-            !double.TryParse(txtMinT.Text, out double minT) ||
-            !double.TryParse(txtMaxT.Text, out double maxT) ||
-            !int.TryParse(txtStepT.Text, out int stepT) ||
-            !double.TryParse(txtZ.Text, out double z) ||
-            !double.TryParse(txtRx.Text, out double Rx) ||
-            !double.TryParse(txtRy.Text, out double Ry) ||
-            !int.TryParse(txtRx.Text, out int fig))
-            {
-                MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            StringBuilder commandBuilderCam = new StringBuilder();
-            StringBuilder commandBuilderRobot = new StringBuilder();
-
-
-            await RunHE(minX, maxX, stepX, minY, maxY, stepY, minT, maxT, stepT, z, Rx, Ry, fig, commandBuilderCam, commandBuilderRobot);
-
-
-            string commandsCam = commandBuilderCam.ToString();
-            string commandsRobot = commandBuilderRobot.ToString();
-
-            Console.WriteLine("commandsCam = " + commandsCam);
-
-            commandsCam = commandsCam.Replace("\r\n", "$");
-
-            if (cameraController.IsConnected && robotController.IsConnected)
-            {
-                try
-                {
-                    byte[] buffer = new byte[1024];
-                    await cameraController.SendCommand("HEB,1");
-                    await cameraController.ReceiveData(buffer);
-
-                    StringBuilder dataBuilderCam = new StringBuilder();
-                    StringBuilder dataBuilderRobot = new StringBuilder();
-
-                    string[] commandLinesCam = commandsCam.Split('$');
-                    string[] commandLinesRobot = commandsRobot.Split('\n');
-
-                    for (int i = 0; i < commandLinesRobot.Length - 1; i++)
-                    {
-                        await robotController.SendCommand(commandLinesRobot[i]);
-                        string receivedDataRobot = await robotController.ReceiveData(buffer);
-
-                        if (receivedDataRobot.Contains("OK"))
-                        {
-                            await cameraController.SendCommand(commandLinesCam[i]);
-                            string receivedDataCam = await cameraController.ReceiveData(buffer);
-
-                            if (receivedDataCam.Contains("HE,1"))
-                            {
-                                await Task.Delay(1000);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-
-                    btnHE.Enabled = true;
-                    await cameraController.SendCommand("HEE,1");
-                    await cameraController.ReceiveData(buffer);
-                    MessageBox.Show("HE finish");
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng kết nối đến camera và robot trước khi gửi lệnh!");
-            }
-        }
-
-
-
         private void btnClearData_Click(object sender, EventArgs e)
         {
             txtReceivedData.Clear();
@@ -234,11 +149,10 @@ namespace WindowsFormsApp4
             btnAutoCalib.Enabled = true;
         }
 
-
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
             await robotController.SendCommand("CRP,");
-            await robotController.GetRobotCurrentPosition();
+            await UpdateCurrentPost();
 
             txtMinX.Text = robotController.x;
             txtMinY.Text = robotController.y;
@@ -247,6 +161,7 @@ namespace WindowsFormsApp4
             txtRy.Text = robotController.ry;
             txtMinT.Text = robotController.rz;
             txtFig.Text = robotController.fig;
+           
         }
 
         private async void btnAutoCalib_Click(object sender, EventArgs e)
@@ -254,28 +169,29 @@ namespace WindowsFormsApp4
 
             btnAutoCalib.Enabled = false;
 
-            if (
-            !double.TryParse(txtMinX.Text, out double minX) ||
-            !double.TryParse(txtMinY.Text, out double minY) ||
-            !double.TryParse(txtMinT.Text, out double minT) ||
-            !double.TryParse(txtZ.Text, out double z) ||
-            !double.TryParse(txtRx.Text, out double Rx) ||
-            !double.TryParse(txtRy.Text, out double Ry) ||
-            !double.TryParse(txtFig.Text, out double Fig))
-            {
-                MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            var command = $"ACB,1,1,{minX},{minY},{z},{minT},{Ry},{Rx}"; // Start HE
-
-            byte[] buffer = new byte[1024];
+            //if (
+            //!double.TryParse(txtMinX.Text, out double minX) ||
+            //!double.TryParse(txtMinY.Text, out double minY) ||
+            //!double.TryParse(txtMinT.Text, out double minT) ||
+            //!double.TryParse(txtZ.Text, out double z) ||
+            //!double.TryParse(txtRx.Text, out double Rx) ||
+            //!double.TryParse(txtRy.Text, out double Ry) ||
+            //!double.TryParse(txtFig.Text, out double Fig))
+            //{
+            //    MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            
 
             if (!cameraController.IsConnected || !robotController.IsConnected)
             {
                 MessageBox.Show("Kết nối Cam và Robot trước khi Calib");
                 return;
             }
-
+            await robotController.SendCommand("CRP,");
+            await UpdateCurrentPost(); 
+            var command = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
+            byte[] buffer = new byte[1024];
             await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
             await cameraController.SendCommand(command);
             string receivedDataCam = await cameraController.ReceiveData(buffer);
@@ -298,7 +214,7 @@ namespace WindowsFormsApp4
                 part[5] = temp;
                 _NextPosition = string.Join(",", part);
             }
-            var sendPostoRobot = $"{_NextPosition},{Fig},";
+            var sendPostoRobot = $"{_NextPosition},{fig},";
             await robotController.SendCommand(sendPostoRobot);
 
             await robotController.ReceiveData(buffer);
@@ -334,7 +250,7 @@ namespace WindowsFormsApp4
 
                 }
 
-                var SendPosToRobot = $"{_SendPosToRobot},{Fig},";
+                var SendPosToRobot = $"{_SendPosToRobot},{fig},";
 
                 await robotController.SendCommand(SendPosToRobot);
 
@@ -347,7 +263,6 @@ namespace WindowsFormsApp4
                     CamResponse = await cameraController.ReceiveData(buffer);
                     await Task.Delay(500);
                 }
-
 
             }
 
@@ -493,6 +408,7 @@ namespace WindowsFormsApp4
         }
         private async Task UpdateCurrentPost()
         {
+           
             await robotController.GetRobotCurrentPosition();
             x = robotController.x;
             y = robotController.y;
@@ -502,7 +418,7 @@ namespace WindowsFormsApp4
             rz = robotController.rz;
             fig = robotController.fig;
 
-            UpdateUIComponents();
+           
         }
 
         private async Task UpdateCurrentJoint()
@@ -522,10 +438,8 @@ namespace WindowsFormsApp4
         {
             await robotController.SendCommand("CRP,");
             await UpdateCurrentPost();
+            UpdateUIComponents();
         }
-
-
-
 
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
@@ -536,7 +450,6 @@ namespace WindowsFormsApp4
 
         }
     }
-
 
 }
 

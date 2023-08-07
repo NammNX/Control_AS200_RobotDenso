@@ -121,11 +121,10 @@ namespace WindowsFormsApp4
                 MessageBox.Show("Kết nối robot !");
                 return;
             }    
-                byte[] buffer = new byte[1024];
-
                 try
                 {
-                    string receivedDataRobot = await ReceiveData(buffer);
+                byte[] buffer = new byte[1024];
+                string receivedDataRobot = await ReceiveData(buffer);
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
                     if (commandLinesRobot.Length >= 6)
@@ -154,11 +153,12 @@ namespace WindowsFormsApp4
                 MessageBox.Show("Kết nối robot !");
                 return;
             }
-                byte[] buffer = new byte[1024];
+               
 
                 try
                 {
-                    string receivedDataRobot = await ReceiveData(buffer);
+                byte[] buffer = new byte[1024];
+                string receivedDataRobot = await ReceiveData(buffer);
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
                     if (commandLinesRobot.Length >= 5)
