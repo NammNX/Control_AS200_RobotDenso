@@ -236,8 +236,8 @@ namespace WindowsFormsApp4
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
-            await robotController.SendCommand("CRP,");
-            await UpdateCurrentPos();
+           await robotController.SendCommand("CRP,");
+           await UpdateCurrentPos();
 
             txtMinX.Text = robotController.x;
             txtMinY.Text = robotController.y;
@@ -246,6 +246,7 @@ namespace WindowsFormsApp4
 
         }
         private bool isFeature = true;
+        private bool AutoCalibDone = false;
         private async Task<string> AutoHandEyeBegin()
         {
             var CommandHandEyeBegin = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
@@ -256,7 +257,9 @@ namespace WindowsFormsApp4
             if (!receivedDataCam.Contains("ACB,2"))
             {
                 isFeature = false;
+                return string.Empty;
             }
+
             var NextPosForCam = receivedDataCam.Substring(6).Replace("\r\n", ""); // Lấy kí tự thứ 6 trở đi (ACB,2,....)
             var NextPosForRobot = ChangeDataFromCamToPosRobot(NextPosForCam);
             var PosRobot = $"{NextPosForRobot},{fig},";
@@ -265,7 +268,40 @@ namespace WindowsFormsApp4
             return NextPosForCam;
         }
 
-           
+        private async Task AutoHandEyeStep(string NextPosForCam)
+        {
+            while (true)
+            {
+                var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
+                await cameraController.SendCommand(CommandHandEyeStep);
+                var CamResponse = await cameraController.ReceiveData();
+                if (CamResponse.Contains("AC,1"))
+                {
+                    btnAutoCalib.Enabled = true;
+                    MessageBox.Show("Calib Success");
+                    return;
+                }
+                else if (CamResponse.Contains("AC,2"))
+                {
+                    var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
+                    var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
+                    var SendPosToRobot = $"{NextPositionForRobot},{fig},";
+                    await robotController.SendCommand(SendPosToRobot);
+                    await robotController.ReceiveData();
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnAutoCalib.Enabled = true;
+                    return;
+                }
+
+            }
+        }    
+
+
+
         private async void btnAutoCalib_Click(object sender, EventArgs e)
         {
 
@@ -284,37 +320,39 @@ namespace WindowsFormsApp4
                 btnAutoCalib.Enabled = true;
                 return;
             }
-            
-            var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
-            await cameraController.SendCommand(CommandHandEyeStep);
-            var CamResponse = await cameraController.ReceiveData();
 
-            while (!CamResponse.Contains("AC,1"))
-            {
-                if (!CamResponse.Contains("AC,2"))
-                {
-                    MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnAutoCalib.Enabled = true;
-                    return;
-                }
-                var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
-                var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
-                var SendPosToRobot = $"{NextPositionForRobot},{fig},";
-                await robotController.SendCommand(SendPosToRobot);
-                string receivedDataRobot = await robotController.ReceiveData();
+            await AutoHandEyeStep(NextPosForCam);
+
+            //var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
+            //await cameraController.SendCommand(CommandHandEyeStep);
+            //var CamResponse = await cameraController.ReceiveData();
+
+            //while (!CamResponse.Contains("AC,1"))
+            //{
+            //    if (!CamResponse.Contains("AC,2"))
+            //    {
+            //        MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        btnAutoCalib.Enabled = true;
+            //        return;
+            //    }
+            //    var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
+            //    var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
+            //    var SendPosToRobot = $"{NextPositionForRobot},{fig},";
+            //    await robotController.SendCommand(SendPosToRobot);
+            //    string receivedDataRobot = await robotController.ReceiveData();
                
-                if (receivedDataRobot.Contains("OK"))
-                {
-                    var commandHeStep = "AC,1,1," + NextPositionForCam;
-                    await cameraController.SendCommand(commandHeStep);
-                    CamResponse = await cameraController.ReceiveData();
-                    if (CamResponse.Contains("AC,1")){ break; }
-                    await Task.Delay(500);
-                }
-            }
+            //    if (receivedDataRobot.Contains("OK"))
+            //    {
+            //        var commandHeStep = "AC,1,1," + NextPositionForCam;
+            //        await cameraController.SendCommand(commandHeStep);
+            //        CamResponse = await cameraController.ReceiveData();
+            //        if (CamResponse.Contains("AC,1")){ break; }
+            //        await Task.Delay(500);
+            //    }
+            //}
 
-            btnAutoCalib.Enabled = true;
-            MessageBox.Show("Calib Success");
+            //btnAutoCalib.Enabled = true;
+            //MessageBox.Show("Calib Success");
         }
 
         private void UpdateUIComponents()
@@ -390,7 +428,3 @@ namespace WindowsFormsApp4
     }
 
 }
-
-
-
-
