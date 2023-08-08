@@ -78,13 +78,14 @@ namespace WindowsFormsApp4
 
         }
 
-        public async Task<string> ReceiveData(byte[] buffer)
+        public async Task<string> ReceiveData()
         {
             if (IsConnected)
             {
                 try
                 {
                     StringBuilder dataBuilderRobot = new StringBuilder();
+                    byte[] buffer = new byte[1024];
 
                     int bytesReadRobot = await robotClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
                     if (bytesReadRobot > 0)
@@ -124,7 +125,7 @@ namespace WindowsFormsApp4
                 try
                 {
                 byte[] buffer = new byte[1024];
-                string receivedDataRobot = await ReceiveData(buffer);
+                string receivedDataRobot = await ReceiveData();
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
                     if (commandLinesRobot.Length >= 6)
@@ -141,44 +142,44 @@ namespace WindowsFormsApp4
 
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Không thể gửi lệnh đến ROBOT(@@). Lỗi: " + ex.Message);
+                    MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
                 }
            
         }
 
-        public async Task GetRobotCurrentJoint()
-        {
-            if (!IsConnected)
-            {
-                MessageBox.Show("Kết nối robot !");
-                return;
-            }
+        //public async Task GetRobotCurrentJoint()
+        //{
+        //    if (!IsConnected)
+        //    {
+        //        MessageBox.Show("Kết nối robot !");
+        //        return;
+        //    }
                
 
-                try
-                {
-                byte[] buffer = new byte[1024];
-                string receivedDataRobot = await ReceiveData(buffer);
+        //        try
+        //        {
+        //        byte[] buffer = new byte[1024];
+        //        string receivedDataRobot = await ReceiveData();
 
-                    string[] commandLinesRobot = receivedDataRobot.Split(' ');
-                    if (commandLinesRobot.Length >= 5)
-                    {
-                        j1 = commandLinesRobot[0];
-                        j2 = commandLinesRobot[1];
-                        j3 = commandLinesRobot[2];
-                        j4 = commandLinesRobot[3];
-                        j5 = commandLinesRobot[4];
-                        j6 = commandLinesRobot[5];
+        //            string[] commandLinesRobot = receivedDataRobot.Split(' ');
+        //            if (commandLinesRobot.Length >= 5)
+        //            {
+        //                j1 = commandLinesRobot[0];
+        //                j2 = commandLinesRobot[1];
+        //                j3 = commandLinesRobot[2];
+        //                j4 = commandLinesRobot[3];
+        //                j5 = commandLinesRobot[4];
+        //                j6 = commandLinesRobot[5];
 
-                    }
-                }
+        //            }
+        //        }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Không thể gửi lệnh đến ROBOT(?). Lỗi: " + ex.Message);
-                }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Không thể gửi lệnh đến ROBOT(?). Lỗi: " + ex.Message);
+        //        }
            
-        }
+        //}
         public async Task MoveRobot(string x, string y, string z, string rx, string ry, string rz, string fig)
         {
 

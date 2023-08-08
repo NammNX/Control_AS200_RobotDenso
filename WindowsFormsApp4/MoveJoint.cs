@@ -13,7 +13,8 @@ namespace WindowsFormsApp4
         private async Task MouseUpJoint()
         {
             await robotController.SendCommand("OK,");
-            await UpdateCurrentJoint();
+            await UpdateCurrentPos();
+            UpdateUIComponents();
         }
         // --------J1---------
         private async void btnJ1Plus_MouseDown(object sender, MouseEventArgs e)

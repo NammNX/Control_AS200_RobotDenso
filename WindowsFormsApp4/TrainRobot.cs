@@ -60,7 +60,7 @@ namespace WindowsFormsApp4
             await TrainVisionPoint();
 
             byte[] buffer = new byte[1024];
-            string DataReceive = await cameraController.ReceiveData(buffer);
+            string DataReceive = await cameraController.ReceiveData();
             if (DataReceive.Contains("TT,1"))
             {
 
@@ -93,7 +93,7 @@ namespace WindowsFormsApp4
             await TrainRobotPickPlace();
 
             byte[] buffer = new byte[1024];
-            string DataReceive = await cameraController.ReceiveData(buffer);
+            string DataReceive = await cameraController.ReceiveData();
             if (DataReceive.Contains("TTR,1"))
             {
                 MessageBox.Show("Train Success", "Thông báo", MessageBoxButtons.OK);
@@ -120,14 +120,14 @@ namespace WindowsFormsApp4
 
             if (!isToolOn)
             {
-                await robotController.SendCommand("OnTool");
+                await robotController.SendCommand("ON,");
                 isToolOn = true;
                 btnOnOffTool.Text = "OFF Tool";
                 btnOnOffTool.BackColor = Color.Red;
             }
             else
             {
-                await robotController.SendCommand("OffTool");
+                await robotController.SendCommand("OFF,");
                 isToolOn = false;
                 btnOnOffTool.Text = "ON Tool";
                 btnOnOffTool.BackColor = Color.Green;

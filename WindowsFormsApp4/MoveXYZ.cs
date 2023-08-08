@@ -13,7 +13,8 @@ namespace WindowsFormsApp4
         private async Task MouseUpPos()
         {
             await robotController.SendCommand("OK,");
-            await UpdateCurrentPost();
+            await UpdateCurrentPos();
+            UpdateUIComponents();
 
         }
         #region Move XYZ

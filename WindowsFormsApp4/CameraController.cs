@@ -67,14 +67,14 @@ namespace WindowsFormsApp4
 
         }
 
-        public async Task<string> ReceiveData(byte[] buffer)
+        public async Task<string> ReceiveData()
         {
             if (IsConnected)
             {
                 try
                 {
                     StringBuilder dataBuilder = new StringBuilder();
-                    
+                    byte[] buffer = new byte[1024];
 
                     int bytesReadCam = await cameraClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
                     Console.WriteLine("bytesReadCam = " + bytesReadCam);
