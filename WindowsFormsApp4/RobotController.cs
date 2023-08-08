@@ -192,7 +192,6 @@ namespace WindowsFormsApp4
                 await SendCommand("ROBOTMOVE,");
                 await Task.Delay(20);
                 await SendCommand(PosRobot);
-
             }
         }
 

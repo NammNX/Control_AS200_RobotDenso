@@ -19,7 +19,7 @@ namespace WindowsFormsApp4
         private CameraController cameraController;
         private RobotController robotController;
         string x, y, z, rx, ry, rz, fig;
-        string j1, j2, j3, j4, j5, j6;
+       
 
 
 
@@ -43,6 +43,9 @@ namespace WindowsFormsApp4
         }
 
         private bool IsconnectCam = false;
+
+       
+
         private bool IsConnectRobot = false;
 
         private void btnConnectCamera_Click(object sender, EventArgs e)
@@ -104,7 +107,6 @@ namespace WindowsFormsApp4
 
             string command = txtCommand.Text.Trim();
             await cameraController.SendCommand(command);
-            byte[] buffer = new byte[1024];
             await cameraController.ReceiveData();
 
         }
@@ -243,7 +245,27 @@ namespace WindowsFormsApp4
 
 
         }
+        private bool isFeature = true;
+        private async Task<string> AutoHandEyeBegin()
+        {
+            var CommandHandEyeBegin = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
+            await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
+            await cameraController.SendCommand(CommandHandEyeBegin);
+            var receivedDataCam = await cameraController.ReceiveData();
 
+            if (!receivedDataCam.Contains("ACB,2"))
+            {
+                isFeature = false;
+            }
+            var NextPosForCam = receivedDataCam.Substring(6).Replace("\r\n", ""); // Lấy kí tự thứ 6 trở đi (ACB,2,....)
+            var NextPosForRobot = ChangeDataFromCamToPosRobot(NextPosForCam);
+            var PosRobot = $"{NextPosForRobot},{fig},";
+            await robotController.SendCommand(PosRobot);
+            await robotController.ReceiveData();
+            return NextPosForCam;
+        }
+
+           
         private async void btnAutoCalib_Click(object sender, EventArgs e)
         {
 
@@ -255,35 +277,14 @@ namespace WindowsFormsApp4
             btnAutoCalib.Enabled = false;
             await robotController.SendCommand("CRP,");
             await UpdateCurrentPos();
-            var CommandHandEyeBegin = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
-            byte[] buffer = new byte[1024];
-            await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
-            await cameraController.SendCommand(CommandHandEyeBegin);
-            string receivedDataCam = await cameraController.ReceiveData();
-
-            if (!receivedDataCam.Contains("ACB,2"))
+            var NextPosForCam = await AutoHandEyeBegin();
+            if (!isFeature) 
             {
                 MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnAutoCalib.Enabled = true;
                 return;
             }
-            //var index = receivedDataCam.IndexOf(',');
-            var NextPosForCam = receivedDataCam.Substring(6); // Lấy kí tự thứ 6 trở đi (ACB,2,....)
-            NextPosForCam = NextPosForCam.Replace("\r\n", "");
-            string[] part = NextPosForCam.Split(',');
-            var NextPosForRobot = "";
-            if (part.Length >= 6)
-            {
-                var temp = part[3];
-                part[3] = part[5];
-                part[5] = temp;
-                NextPosForRobot = string.Join(",", part);
-            }
-            var PosRobot = $"{NextPosForRobot},{fig},";
-            await robotController.SendCommand(PosRobot);
-
-            await robotController.ReceiveData();
-
+            
             var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
             await cameraController.SendCommand(CommandHandEyeStep);
             var CamResponse = await cameraController.ReceiveData();
@@ -296,46 +297,25 @@ namespace WindowsFormsApp4
                     btnAutoCalib.Enabled = true;
                     return;
                 }
-
-
-                var NextPositionForCam = CamResponse.Substring(5); // Lấy kí tự thứ 5 trở đi (AC,2,....)
-                NextPositionForCam = NextPositionForCam.Replace("\r\n", "");
-
-                string[] parts = NextPositionForCam.Split(',');
-                var NextPositionForRobot = "";
-
-                if (parts.Length >= 6)
-                {
-                    // Đổi vị trí giữa phần tử Rz và Rx
-                    string temp = parts[3];
-                    parts[3] = parts[5];
-                    parts[5] = temp;
-
-                    NextPositionForRobot = string.Join(",", parts);
-
-                }
+                var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
+                var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
                 var SendPosToRobot = $"{NextPositionForRobot},{fig},";
-
                 await robotController.SendCommand(SendPosToRobot);
-
                 string receivedDataRobot = await robotController.ReceiveData();
+               
                 if (receivedDataRobot.Contains("OK"))
                 {
                     var commandHeStep = "AC,1,1," + NextPositionForCam;
                     await cameraController.SendCommand(commandHeStep);
                     CamResponse = await cameraController.ReceiveData();
-                    if (CamResponse.Contains("AC,1"))
-                    { break; }
+                    if (CamResponse.Contains("AC,1")){ break; }
                     await Task.Delay(500);
                 }
-
             }
 
             btnAutoCalib.Enabled = true;
             MessageBox.Show("Calib Success");
         }
-
-
 
         private void UpdateUIComponents()
         {
@@ -392,6 +372,21 @@ namespace WindowsFormsApp4
             await robotController.SendCommand("End,");
 
         }
+
+       private string ChangeDataFromCamToPosRobot(string DataReiceved)
+        {
+            string[] part = DataReiceved.Split(',');
+            if (part.Length >= 6)
+            {
+                var temp = part[3];
+                part[3] = part[5];
+                part[5] = temp;
+                DataReiceved = string.Join(",", part);
+            }
+            return DataReiceved;
+        }
+
+
     }
 
 }

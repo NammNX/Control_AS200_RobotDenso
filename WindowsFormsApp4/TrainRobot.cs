@@ -11,7 +11,7 @@ namespace WindowsFormsApp4
 {
     public partial class Form1
     {
-
+        private string xTrain, yTrain, zTrain, rxTrain, ryTrain, rzTrain;
         #region Train Robot
         private async Task TrainVisionPoint()
         {
@@ -28,6 +28,13 @@ namespace WindowsFormsApp4
             var command = $"TT,{Feature},{x},{y},{z},{rz},{ry},{rx}";
 
             await cameraController.SendCommand(command);
+            xTrain = x.ToString();
+            yTrain = y.ToString();
+            zTrain = z.ToString();
+            rxTrain = rx.ToString();
+            ryTrain = ry.ToString();
+            rzTrain = rz.ToString();
+           
         }
 
         private async Task TrainRobotPickPlace()
@@ -59,7 +66,7 @@ namespace WindowsFormsApp4
             btnTrainVisionPoint.Enabled = false;
             await TrainVisionPoint();
 
-            byte[] buffer = new byte[1024];
+           
             string DataReceive = await cameraController.ReceiveData();
             if (DataReceive.Contains("TT,1"))
             {
@@ -92,7 +99,7 @@ namespace WindowsFormsApp4
             btnTrainPickPlace.Enabled = false;
             await TrainRobotPickPlace();
 
-            byte[] buffer = new byte[1024];
+            
             string DataReceive = await cameraController.ReceiveData();
             if (DataReceive.Contains("TTR,1"))
             {
@@ -106,6 +113,7 @@ namespace WindowsFormsApp4
             btnTrainPickPlace.Enabled = true;
 
         }
+
 
         #endregion
         private bool isToolOn = false;
@@ -133,6 +141,43 @@ namespace WindowsFormsApp4
                 btnOnOffTool.BackColor = Color.Green;
 
             }
+
+        }
+
+        private async void btnTestRobot_Click(object sender, EventArgs e)
+        {
+            if (!cameraController.IsConnected)
+            {
+                MessageBox.Show("Camera chưa kết nối");
+                return;
+            }
+            if (cbFeature.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chọn Feature trước khi Test", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var feature = cbFeature.Text;
+            var command = $"XT,{feature},1,{xTrain},{yTrain},{zTrain},{rzTrain},{ryTrain},{rxTrain}";
+            await cameraController.SendCommand(command);
+            var Camrespon = await cameraController.ReceiveData();
+           
+            if (!Camrespon.Contains("XT,1"))
+            {
+                lbTestStatus.Text = "Out FOV";
+                return;
+            }
+            Camrespon = Camrespon.Substring(5).Replace("\r\n", "");
+
+            Camrespon = ChangeDataFromCamToPosRobot(Camrespon);
+             Console.WriteLine(Camrespon);
+            
+            var CommandPosRobot = $"{Camrespon},{fig},";
+            await robotController.SendCommand("ROBOTMOVE,");
+            await Task.Delay(20);
+            await robotController.SendCommand(CommandPosRobot);
+
+
+
         }
     }
 }
