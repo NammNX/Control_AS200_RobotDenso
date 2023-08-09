@@ -93,9 +93,9 @@ namespace WindowsFormsApp4
                 
             }    
             await robotController.MoveRobot(x0,y0,z0,rx0,ry0,rz0,fig0);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-           
+            await UpdateCurrentPos();
+            UpdateUIComponents();
+
         }
         private async void btnMoveP1_Click(object sender, EventArgs e)
         {
@@ -106,9 +106,10 @@ namespace WindowsFormsApp4
 
             }
             await robotController.MoveRobot(x1, y1, z1, rx1, ry1, rz1, fig1);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-          
+            await UpdateCurrentPos();
+            UpdateUIComponents();
+
+
         }
         private async void btnMoveP2_Click(object sender, EventArgs e)
         {
@@ -118,9 +119,10 @@ namespace WindowsFormsApp4
                 return;
             }
             await robotController.MoveRobot(x2, y2, z2, rx2, ry2, rz2, fig2);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-           
+            await UpdateCurrentPos();
+            UpdateUIComponents();
+
+
         }
         private async void btnMoveP3_Click(object sender, EventArgs e)
         {
@@ -130,9 +132,10 @@ namespace WindowsFormsApp4
                 return;
             }
             await robotController.MoveRobot(x3, y3, z3, rx3, ry3, rz3, fig3);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-           
+            await UpdateCurrentPos();
+            UpdateUIComponents();
+
+
         }
         private async void btnMoveP4_Click(object sender, EventArgs e)
         {
@@ -142,9 +145,10 @@ namespace WindowsFormsApp4
                 return;
             }
             await robotController.MoveRobot(x4, y4, z4, rx4, ry4, rz4, fig4);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-           
+            await UpdateCurrentPos();
+            UpdateUIComponents();
+
+
         }
 
     }

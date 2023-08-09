@@ -301,9 +301,6 @@ namespace WindowsFormsApp4
 
             }
         }    
-
-
-
         private async void btnAutoCalib_Click(object sender, EventArgs e)
         {
 
@@ -377,11 +374,9 @@ namespace WindowsFormsApp4
 
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
-
             await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRy2.Text, txtRz.Text, txtFig2.Text);
-            await Task.Delay(200);
-            await robotController.SendCommand("End,");
-
+            await UpdateCurrentPos();
+            UpdateUIComponents();
         }
 
        private string ChangeDataFromCamToPosRobot(string DataReiceved)
