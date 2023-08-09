@@ -246,7 +246,7 @@ namespace WindowsFormsApp4
 
         }
         private bool isFeature = true;
-        private bool AutoCalibDone = false;
+       
         private async Task<string> AutoHandEyeBegin()
         {
             var CommandHandEyeBegin = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
@@ -288,7 +288,9 @@ namespace WindowsFormsApp4
                     var SendPosToRobot = $"{NextPositionForRobot},{fig},";
                     await robotController.SendCommand(SendPosToRobot);
                     await robotController.ReceiveData();
-                    
+                    NextPosForCam = NextPositionForCam;
+                    await Task.Delay(500);
+
                 }
                 else
                 {
@@ -323,36 +325,7 @@ namespace WindowsFormsApp4
 
             await AutoHandEyeStep(NextPosForCam);
 
-            //var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
-            //await cameraController.SendCommand(CommandHandEyeStep);
-            //var CamResponse = await cameraController.ReceiveData();
-
-            //while (!CamResponse.Contains("AC,1"))
-            //{
-            //    if (!CamResponse.Contains("AC,2"))
-            //    {
-            //        MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        btnAutoCalib.Enabled = true;
-            //        return;
-            //    }
-            //    var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
-            //    var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
-            //    var SendPosToRobot = $"{NextPositionForRobot},{fig},";
-            //    await robotController.SendCommand(SendPosToRobot);
-            //    string receivedDataRobot = await robotController.ReceiveData();
-               
-            //    if (receivedDataRobot.Contains("OK"))
-            //    {
-            //        var commandHeStep = "AC,1,1," + NextPositionForCam;
-            //        await cameraController.SendCommand(commandHeStep);
-            //        CamResponse = await cameraController.ReceiveData();
-            //        if (CamResponse.Contains("AC,1")){ break; }
-            //        await Task.Delay(500);
-            //    }
-            //}
-
-            //btnAutoCalib.Enabled = true;
-            //MessageBox.Show("Calib Success");
+            
         }
 
         private void UpdateUIComponents()

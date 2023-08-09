@@ -11,7 +11,9 @@ namespace WindowsFormsApp4
 {
     public partial class Form1
     {
-        private string xTrain, yTrain, zTrain, rxTrain, ryTrain, rzTrain;
+        private string xTrain, yTrain, zTrain, rxTrain, ryTrain, rzTrain, figTrain;
+        private bool isTT = false;
+        private bool isTTR = false;
         #region Train Robot
         private async Task TrainVisionPoint()
         {
@@ -72,6 +74,7 @@ namespace WindowsFormsApp4
             {
 
                 MessageBox.Show("Train Success", "Thông báo", MessageBoxButtons.OK);
+                isTT = true;
             }
             else
             {
@@ -104,6 +107,8 @@ namespace WindowsFormsApp4
             if (DataReceive.Contains("TTR,1"))
             {
                 MessageBox.Show("Train Success", "Thông báo", MessageBoxButtons.OK);
+                figTrain = txtFig2.Text;
+                isTTR = true;
             }
             else
             {
@@ -113,7 +118,6 @@ namespace WindowsFormsApp4
             btnTrainPickPlace.Enabled = true;
 
         }
-
 
         #endregion
         private bool isToolOn = false;
@@ -156,6 +160,11 @@ namespace WindowsFormsApp4
                 MessageBox.Show("Chọn Feature trước khi Test", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if(!isTT || !isTTR)
+            {
+                MessageBox.Show("Chưa Train Robot");
+                return;
+            }    
             var feature = cbFeature.Text;
             var command = $"XT,{feature},1,{xTrain},{yTrain},{zTrain},{rzTrain},{ryTrain},{rxTrain}";
             await cameraController.SendCommand(command);
@@ -163,7 +172,7 @@ namespace WindowsFormsApp4
            
             if (!Camrespon.Contains("XT,1"))
             {
-                lbTestStatus.Text = "Out FOV";
+                lbTestStatus.Text = "Không tìm được Patten";
                 return;
             }
             Camrespon = Camrespon.Substring(5).Replace("\r\n", "");
@@ -171,13 +180,10 @@ namespace WindowsFormsApp4
             Camrespon = ChangeDataFromCamToPosRobot(Camrespon);
              Console.WriteLine(Camrespon);
             
-            var CommandPosRobot = $"{Camrespon},{fig},";
+            var CommandPosRobot = $"{Camrespon},{figTrain},";
             await robotController.SendCommand("ROBOTMOVE,");
             await Task.Delay(20);
             await robotController.SendCommand(CommandPosRobot);
-
-
-
         }
     }
 }
