@@ -166,7 +166,7 @@ namespace WindowsFormsApp4
                 return;
             }    
             var feature = cbFeature.Text;
-            var command = $"XT,{feature},1,{xTrain},{yTrain},{zTrain},{rzTrain},{ryTrain},{rxTrain}";
+            var command = $"XT,{feature},1,{x},{y},{z},{rz},{ry},{rx}";
             await cameraController.SendCommand(command);
             var Camrespon = await cameraController.ReceiveData();
            
@@ -178,9 +178,8 @@ namespace WindowsFormsApp4
             Camrespon = Camrespon.Substring(5).Replace("\r\n", "");
 
             Camrespon = ChangeDataFromCamToPosRobot(Camrespon);
-             Console.WriteLine(Camrespon);
             
-            var CommandPosRobot = $"{Camrespon},{figTrain},";
+            var CommandPosRobot = $"{Camrespon},{fig},";
             await robotController.SendCommand("ROBOTMOVE,");
             await Task.Delay(20);
             await robotController.SendCommand(CommandPosRobot);

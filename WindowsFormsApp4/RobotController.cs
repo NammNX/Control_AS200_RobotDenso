@@ -10,6 +10,7 @@ namespace WindowsFormsApp4
     {
         private TcpClient robotClient;
         public TextBox TextReceivedData { get; set; }
+       
         public bool IsConnected { get { return robotClient != null && robotClient.Connected; } }
         public string x { get; set; }
         public string y { get; set; }
@@ -58,23 +59,24 @@ namespace WindowsFormsApp4
         public async Task SendCommand(string command)
         {
             if (!IsConnected)
-            { 
+            {
                 MessageBox.Show("Robot chưa được kết nối!");
                 return;
             }
-                try
+            try
+            {
+                byte[] dataRobot = Encoding.ASCII.GetBytes(command);
+                TextReceivedData.Invoke((MethodInvoker)(() =>
                 {
-                    byte[] dataRobot = Encoding.ASCII.GetBytes(command);
-                    TextReceivedData.Invoke((MethodInvoker)(() =>
-                    {
-                        TextReceivedData.AppendText(">>>> Robot: " + command + Environment.NewLine);
-                    }));
-                    await robotClient.GetStream().WriteAsync(dataRobot, 0, dataRobot.Length);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Không thể gửi lệnh đến robot. Lỗi: " + ex.Message);
-                }
+                    TextReceivedData.AppendText(">>>> Robot: " + command + Environment.NewLine);
+                }));
+               
+                await robotClient.GetStream().WriteAsync(dataRobot, 0, dataRobot.Length);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể gửi lệnh đến robot. Lỗi: " + ex.Message);
+            }
 
         }
 
@@ -97,7 +99,7 @@ namespace WindowsFormsApp4
                         {
                             TextReceivedData.AppendText("<<<< Robot: " + receivedDataRobot + Environment.NewLine);
                         }));
-
+                        
                         return receivedDataRobot;
                     }
                 }
@@ -108,7 +110,7 @@ namespace WindowsFormsApp4
             }
             else
             {
-                MessageBox.Show("Camera chưa được kết nối!");
+                MessageBox.Show("Robot chưa được kết nối!");
 
             }
 

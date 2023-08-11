@@ -19,10 +19,6 @@ namespace WindowsFormsApp4
         private CameraController cameraController;
         private RobotController robotController;
         string x, y, z, rx, ry, rz, fig;
-       
-
-
-
 
         public Form1()
         {
@@ -33,6 +29,7 @@ namespace WindowsFormsApp4
             cameraController.TextReceivedData = txtReceivedData;
             robotController = new RobotController();
             robotController.TextReceivedData = txtReceivedData;
+            robotController.TextReceivedData = txtReceiveDataRobot;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -43,9 +40,6 @@ namespace WindowsFormsApp4
         }
 
         private bool IsconnectCam = false;
-
-       
-
         private bool IsConnectRobot = false;
 
         private void btnConnectCamera_Click(object sender, EventArgs e)
@@ -110,129 +104,32 @@ namespace WindowsFormsApp4
             await cameraController.ReceiveData();
 
         }
-
-
-
-        //private async Task RunHE(double minX, double maxX, int stepX, double minY, double maxY, int stepY,
-        //                           double minT, double maxT, int stepT, double z, double Rx, double Ry,
-        //                           int fig, StringBuilder commandBuilderCam, StringBuilder commandBuilderRobot)
-        //{
-        //    for (double y = minY; y <= maxY; y += (maxY - minY) / (stepY - 1))
-        //    {
-        //        for (double x = minX; x <= maxX; x += (maxX - minX) / (stepX - 1))
-        //        {
-        //            string entryRobot = $"{x},{y},{z},{Rx},{Ry},{minT},{fig},";
-        //            commandBuilderRobot.AppendLine(entryRobot);
-
-        //            string entryCam = $"HE,1,1,{x},{y},0,{minT},0,0";
-        //            commandBuilderCam.AppendLine(entryCam);
-        //        }
-        //    }
-
-        //    for (double Rz = minT; Rz <= maxT; Rz += (maxT - minT) / (stepT - 1))
-        //    {
-        //        string entryRobot = $"{minX + 10},{minY + 10},{z},{Rx},{Ry},{Rz},{fig},";
-        //        commandBuilderRobot.AppendLine(entryRobot);
-
-        //        string entryCam = $"HE,1,1,{minX + 10},{minY + 10},0,{Rz},0,0";
-        //        commandBuilderCam.AppendLine(entryCam);
-        //    }
-        //}
-        //private async void btnHE_Click(object sender, EventArgs e)
-        //{
-        //    btnHE.Enabled = false;
-
-        //    if (
-        //    !double.TryParse(txtMinX.Text, out double minX) ||
-        //    !double.TryParse(txtMaxX.Text, out double maxX) ||
-        //    !int.TryParse(txtStepX.Text, out int stepX) ||
-        //    !double.TryParse(txtMinY.Text, out double minY) ||
-        //    !double.TryParse(txtMaxY.Text, out double maxY) ||
-        //    !int.TryParse(txtStepY.Text, out int stepY) ||
-        //    !double.TryParse(txtMinT.Text, out double minT) ||
-        //    !double.TryParse(txtMaxT.Text, out double maxT) ||
-        //    !int.TryParse(txtStepT.Text, out int stepT) ||
-        //    !double.TryParse(txtZ.Text, out double z) ||
-        //    !double.TryParse(txtRx.Text, out double Rx) ||
-        //    !double.TryParse(txtRy.Text, out double Ry) ||
-        //    !int.TryParse(txtRx.Text, out int fig))
-        //    {
-        //        MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    StringBuilder commandBuilderCam = new StringBuilder();
-        //    StringBuilder commandBuilderRobot = new StringBuilder();
-
-
-        //    await RunHE(minX, maxX, stepX, minY, maxY, stepY, minT, maxT, stepT, z, Rx, Ry, fig, commandBuilderCam, commandBuilderRobot);
-
-
-        //    string commandsCam = commandBuilderCam.ToString();
-        //    string commandsRobot = commandBuilderRobot.ToString();
-
-        //    Console.WriteLine("commandsCam = " + commandsCam);
-
-        //    commandsCam = commandsCam.Replace("\r\n", "$");
-
-        //    if (cameraController.IsConnected && robotController.IsConnected)
-        //    {
-        //        try
-        //        {
-        //            byte[] buffer = new byte[1024];
-        //            await cameraController.SendCommand("HEB,1");
-        //            await cameraController.ReceiveData(buffer);
-
-        //            StringBuilder dataBuilderCam = new StringBuilder();
-        //            StringBuilder dataBuilderRobot = new StringBuilder();
-
-        //            string[] commandLinesCam = commandsCam.Split('$');
-        //            string[] commandLinesRobot = commandsRobot.Split('\n');
-
-        //            for (int i = 0; i < commandLinesRobot.Length - 1; i++)
-        //            {
-        //                await robotController.SendCommand(commandLinesRobot[i]);
-        //                string receivedDataRobot = await robotController.ReceiveData(buffer);
-
-        //                if (receivedDataRobot.Contains("OK"))
-        //                {
-        //                    await cameraController.SendCommand(commandLinesCam[i]);
-        //                    string receivedDataCam = await cameraController.ReceiveData(buffer);
-
-        //                    if (receivedDataCam.Contains("HE,1"))
-        //                    {
-        //                        await Task.Delay(1000);
-        //                    }
-        //                    else
-        //                    {
-        //                        break;
-        //                    }
-        //                }
-        //            }
-
-        //            btnHE.Enabled = true;
-        //            await cameraController.SendCommand("HEE,1");
-        //            await cameraController.ReceiveData(buffer);
-        //            MessageBox.Show("HE finish");
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Vui lòng kết nối đến camera và robot trước khi gửi lệnh!");
-        //    }
-        //}
-
         private void btnClearData_Click(object sender, EventArgs e)
         {
             txtReceivedData.Clear();
             btnHE.Enabled = true;
             btnAutoCalib.Enabled = true;
+            btnTrainPickPlace.Enabled = true;
+            btnTrainVisionPoint.Enabled = true;
         }
+
+      
+
+        private async void btnSendRobot_Click(object sender, EventArgs e)
+        {
+            string command = txtSendRobot.Text.Trim() + ",";
+            await robotController.SendCommand(command);
+            await robotController.ReceiveData();
+        }
+
+        private void btnCleanDataRobot_Click(object sender, EventArgs e)
+        {
+            txtReceiveDataRobot.Clear();
+            btnTrainPickPlace.Enabled = true;
+            btnTrainVisionPoint.Enabled = true;
+        }
+
+       
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
@@ -245,85 +142,7 @@ namespace WindowsFormsApp4
 
 
         }
-        private bool isFeature = true;
-       
-        private async Task<string> AutoHandEyeBegin()
-        {
-            var CommandHandEyeBegin = $"ACB,1,1,{x},{y},{z},{rz},{ry},{rx}"; // Lệnh Start HE
-            await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
-            await cameraController.SendCommand(CommandHandEyeBegin);
-            var receivedDataCam = await cameraController.ReceiveData();
-
-            if (!receivedDataCam.Contains("ACB,2"))
-            {
-                isFeature = false;
-                return string.Empty;
-            }
-
-            var NextPosForCam = receivedDataCam.Substring(6).Replace("\r\n", ""); // Lấy kí tự thứ 6 trở đi (ACB,2,....)
-            var NextPosForRobot = ChangeDataFromCamToPosRobot(NextPosForCam);
-            var PosRobot = $"{NextPosForRobot},{fig},";
-            await robotController.SendCommand(PosRobot);
-            await robotController.ReceiveData();
-            return NextPosForCam;
-        }
-
-        private async Task AutoHandEyeStep(string NextPosForCam)
-        {
-            while (true)
-            {
-                var CommandHandEyeStep = "AC,1,1," + NextPosForCam;
-                await cameraController.SendCommand(CommandHandEyeStep);
-                var CamResponse = await cameraController.ReceiveData();
-                if (CamResponse.Contains("AC,1"))
-                {
-                    btnAutoCalib.Enabled = true;
-                    MessageBox.Show("Calib Success");
-                    return;
-                }
-                else if (CamResponse.Contains("AC,2"))
-                {
-                    var NextPositionForCam = CamResponse.Substring(5).Replace("\r\n", ""); ; // Lấy kí tự thứ 5 trở đi (AC,2,....)
-                    var NextPositionForRobot = ChangeDataFromCamToPosRobot(NextPositionForCam);
-                    var SendPosToRobot = $"{NextPositionForRobot},{fig},";
-                    await robotController.SendCommand(SendPosToRobot);
-                    await robotController.ReceiveData();
-                    NextPosForCam = NextPositionForCam;
-                    await Task.Delay(500);
-
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnAutoCalib.Enabled = true;
-                    return;
-                }
-
-            }
-        }    
-        private async void btnAutoCalib_Click(object sender, EventArgs e)
-        {
-
-            if (!cameraController.IsConnected || !robotController.IsConnected)
-            {
-                MessageBox.Show("Kết nối Cam và Robot trước khi Calib");
-                return;
-            }
-            btnAutoCalib.Enabled = false;
-            await robotController.SendCommand("CRP,");
-            await UpdateCurrentPos();
-            var NextPosForCam = await AutoHandEyeBegin();
-            if (!isFeature) 
-            {
-                MessageBox.Show("Không tìm thấy Feature", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btnAutoCalib.Enabled = true;
-                return;
-            }
-
-            await AutoHandEyeStep(NextPosForCam);
-
-            
-        }
+        
 
         private void UpdateUIComponents()
         {
@@ -351,18 +170,6 @@ namespace WindowsFormsApp4
 
 
         }
-
-        //private async Task UpdateCurrentJoint()
-        //{
-        //    await robotController.GetRobotCurrentJoint();
-        //    j1 = robotController.j1;
-        //    j2 = robotController.j2;
-        //    j3 = robotController.j3;
-        //    j4 = robotController.j4;
-        //    j5 = robotController.j5;
-        //    j6 = robotController.j6;
-            
-        //}
 
 
         private async void btnGetCurPos2_Click(object sender, EventArgs e)
