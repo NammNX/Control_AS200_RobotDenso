@@ -30,6 +30,29 @@ namespace WindowsFormsApp4
             robotController = new RobotController();
             robotController.TextReceivedData = txtReceivedData;
             robotController.TextReceivedData = txtReceiveDataRobot;
+            btnMoveP10.Tag = 0;
+            btnMoveP11.Tag = 1;
+            btnMoveP12.Tag = 2;
+            btnMoveP13.Tag = 3;
+            btnMoveP14.Tag = 4;
+            btnMoveP15.Tag = 5;
+            btnMoveP16.Tag = 6;
+            btnMoveP17.Tag = 7;
+            btnMoveP18.Tag = 8;
+            btnMoveP19.Tag = 9;
+
+            // Gán sự kiện click cho các nút di chuyển P
+            btnMoveP10.Click += MoveToPosition_Click;
+            btnMoveP11.Click += MoveToPosition_Click;
+            btnMoveP12.Click += MoveToPosition_Click;
+            btnMoveP13.Click += MoveToPosition_Click;
+            btnMoveP14.Click += MoveToPosition_Click;
+            btnMoveP15.Click += MoveToPosition_Click;
+            btnMoveP16.Click += MoveToPosition_Click;
+            btnMoveP17.Click += MoveToPosition_Click;
+            btnMoveP18.Click += MoveToPosition_Click;
+            btnMoveP19.Click += MoveToPosition_Click;
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
