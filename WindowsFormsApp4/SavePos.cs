@@ -57,13 +57,14 @@ namespace WindowsFormsApp4
             }
 
             await robotController.MoveRobot(X[index], Y[index], Z[index], RX[index], RY[index], RZ[index], FIG[index]);
-            txtX.Text = X[index];
-            txtY.Text = Y[index];
-            txtZ2.Text = Z[index];
-            txtRx2.Text = RX[index];
-            txtRy2.Text = RY[index];
-            txtRz.Text = RZ[index];
-            txtFig2.Text = FIG[index];
+            x = X[index];
+            y = Y[index];
+            z = Z[index];
+            rx = RX[index];
+            ry = RY[index];
+            rz = RZ[index];
+            fig = FIG[index];
+            UpdateUIComponents();
         }
 
         private async void btnSavePos_Click(object sender, EventArgs e)

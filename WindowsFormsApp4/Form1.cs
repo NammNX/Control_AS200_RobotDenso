@@ -152,7 +152,7 @@ namespace WindowsFormsApp4
             btnTrainVisionPoint.Enabled = true;
         }
 
-       
+        
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
