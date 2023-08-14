@@ -205,8 +205,13 @@ namespace WindowsFormsApp4
         private async void btnMoveRobot_Click(object sender, EventArgs e)
         {
             await robotController.MoveRobot(txtX.Text, txtY.Text, txtZ2.Text, txtRx2.Text, txtRy2.Text, txtRz.Text, txtFig2.Text);
-            await UpdateCurrentPos();
-            UpdateUIComponents();
+            x = txtX.Text;
+            y = txtY.Text;
+            z = txtZ2.Text;
+            rx = txtRx2.Text;
+            ry = txtRy2.Text;
+            rz = txtRz.Text;
+            fig = txtFig2.Text;
         }
 
        private string ChangeDataFromCamToPosRobot(string DataReiceved)

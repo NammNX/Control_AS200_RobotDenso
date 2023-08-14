@@ -19,7 +19,7 @@ namespace WindowsFormsApp4
         private string[] FIG = new string[10];
 
 
-        public void SavePos()
+        public async Task SavePos()
         {
             
             var Pos = cbPos.Text;
@@ -29,18 +29,20 @@ namespace WindowsFormsApp4
             {
                 int arrayIndex = posIndex - 10;
 
-                X[arrayIndex] = robotController.x;
-                Y[arrayIndex] = robotController.y;
-                Z[arrayIndex] = robotController.z;
-                RX[arrayIndex] = robotController.rx;
-                RY[arrayIndex] = robotController.ry;
-                RZ[arrayIndex] = robotController.rz;
-                FIG[arrayIndex] = robotController.fig;
+                X[arrayIndex] = x;
+                Y[arrayIndex] = y;
+                Z[arrayIndex] = z;
+                RX[arrayIndex] = rx;
+                RY[arrayIndex] = ry;
+                RZ[arrayIndex] = rz;
+                FIG[arrayIndex] = fig;
 
-                string labelText = $"{X[arrayIndex]},{Y[arrayIndex]},{Z[arrayIndex]},{RX[arrayIndex]},{RY[arrayIndex]},{RZ[arrayIndex]},{FIG[arrayIndex]}";
+                string labelText = $"{X[arrayIndex]},{Y[arrayIndex]},{Z[arrayIndex]},{RX[arrayIndex]},{RY[arrayIndex]},{RZ[arrayIndex]},{FIG[arrayIndex]},";
                 Controls.Find($"lbP{posIndex}", true)[0].Text = labelText;
-
-            }    
+                await robotController.SendCommand(Pos + ",");
+                await Task.Delay(30);
+                await robotController.SendCommand(labelText);
+;            }    
        
         }
         private async void MoveToPosition_Click(object sender, EventArgs e)
@@ -55,18 +57,23 @@ namespace WindowsFormsApp4
             }
 
             await robotController.MoveRobot(X[index], Y[index], Z[index], RX[index], RY[index], RZ[index], FIG[index]);
-            await UpdateCurrentPos();
-            UpdateUIComponents();
+            txtX.Text = X[index];
+            txtY.Text = Y[index];
+            txtZ2.Text = Z[index];
+            txtRx2.Text = RX[index];
+            txtRy2.Text = RY[index];
+            txtRz.Text = RZ[index];
+            txtFig2.Text = FIG[index];
         }
 
-        private void btnSavePos_Click(object sender, EventArgs e)
+        private async void btnSavePos_Click(object sender, EventArgs e)
         {
             if (cbPos.SelectedIndex == -1)
             {
                 MessageBox.Show("Chọn P cần lưu");
                 return;
             }
-            SavePos();
+            await SavePos();
         }
 
 

@@ -149,39 +149,7 @@ namespace WindowsFormsApp4
            
         }
 
-        //public async Task GetRobotCurrentJoint()
-        //{
-        //    if (!IsConnected)
-        //    {
-        //        MessageBox.Show("Kết nối robot !");
-        //        return;
-        //    }
-               
-
-        //        try
-        //        {
-        //        byte[] buffer = new byte[1024];
-        //        string receivedDataRobot = await ReceiveData();
-
-        //            string[] commandLinesRobot = receivedDataRobot.Split(' ');
-        //            if (commandLinesRobot.Length >= 5)
-        //            {
-        //                j1 = commandLinesRobot[0];
-        //                j2 = commandLinesRobot[1];
-        //                j3 = commandLinesRobot[2];
-        //                j4 = commandLinesRobot[3];
-        //                j5 = commandLinesRobot[4];
-        //                j6 = commandLinesRobot[5];
-
-        //            }
-        //        }
-
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Không thể gửi lệnh đến ROBOT(?). Lỗi: " + ex.Message);
-        //        }
-           
-        //}
+        
         public async Task MoveRobot(string x, string y, string z, string rx, string ry, string rz, string fig)
         {
 
