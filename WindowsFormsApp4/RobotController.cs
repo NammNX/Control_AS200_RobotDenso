@@ -65,10 +65,11 @@ namespace WindowsFormsApp4
             }
             try
             {
-                byte[] dataRobot = Encoding.ASCII.GetBytes(command);
+                var commandSendRobot = command + ",";
+                byte[] dataRobot = Encoding.ASCII.GetBytes(commandSendRobot);
                 TextReceivedData.Invoke((MethodInvoker)(() =>
                 {
-                    TextReceivedData.AppendText(">>>> Robot: " + command + Environment.NewLine);
+                    TextReceivedData.AppendText(">>>> Robot: " + commandSendRobot + Environment.NewLine);
                 }));
                
                 await robotClient.GetStream().WriteAsync(dataRobot, 0, dataRobot.Length);
@@ -153,13 +154,13 @@ namespace WindowsFormsApp4
         public async Task MoveRobot(string x, string y, string z, string rx, string ry, string rz, string fig)
         {
 
-            var PosRobot = $"{x},{y},{z},{rx},{ry},{rz},{fig},";
+            var PosRobot = $"{x},{y},{z},{rx},{ry},{rz},{fig}";
             if (!IsConnected)
             {
                 MessageBox.Show("Kết nối robot !");
                 return; 
             }
-                await SendCommand("ROBOTMOVE,");
+                await SendCommand("ROBOTMOVE");
                 await Task.Delay(20);
                 await SendCommand(PosRobot);
             }

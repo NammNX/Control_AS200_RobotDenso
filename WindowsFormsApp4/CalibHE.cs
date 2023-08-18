@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp4
 {
-     public partial class Form1
+    public partial class Form1
     {
         public class HEParameters
         {
@@ -32,7 +32,7 @@ namespace WindowsFormsApp4
             {
                 for (double x = heParams.MinX; x <= heParams.MaxX; x += (heParams.MaxX - heParams.MinX) / (heParams.StepX - 1))
                 {
-                    string entryRobot = $"{x},{y},{heParams.Z},{heParams.Rx},{heParams.Ry},{heParams.MinT},{heParams.Fig},";
+                    string entryRobot = $"{x},{y},{heParams.Z},{heParams.Rx},{heParams.Ry},{heParams.MinT},{heParams.Fig}";
                     commandBuilderRobot.AppendLine(entryRobot);
 
                     string entryCam = $"HE,1,1,{x},{y},0,{heParams.MinT},0,0";
@@ -42,7 +42,7 @@ namespace WindowsFormsApp4
 
             for (double Rz = heParams.MinT; Rz <= heParams.MaxT; Rz += (heParams.MaxT - heParams.MinT) / (heParams.StepT - 1))
             {
-                string entryRobot = $"{heParams.MinX + 10},{heParams.MinY + 10},{heParams.Z},{heParams.Rx},{heParams.Ry},{Rz},{heParams.Fig},";
+                string entryRobot = $"{heParams.MinX + 10},{heParams.MinY + 10},{heParams.Z},{heParams.Rx},{heParams.Ry},{Rz},{heParams.Fig}";
                 commandBuilderRobot.AppendLine(entryRobot);
 
                 string entryCam = $"HE,1,1,{heParams.MinX + 10},{heParams.MinY + 10},0,{Rz},0,0";
@@ -68,7 +68,7 @@ namespace WindowsFormsApp4
             !double.TryParse(txtMinT.Text, out double minT) ||
             !double.TryParse(txtMaxT.Text, out double maxT) ||
             !int.TryParse(txtStepT.Text, out int stepT))
-            
+
             {
                 MessageBox.Show("Nhập số cho các giá trị!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -101,13 +101,13 @@ namespace WindowsFormsApp4
             string[] commandLinesCam = commandsCam.Split('$');
             string[] commandLinesRobot = commandsRobot.Split('\n');
 
-            await robotController.SendCommand("HE,"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
+            await robotController.SendCommand("HE"); // gửi kí tự HE để robot nhảy vào phần HE trên WC3
             await Task.Delay(500);
-            
+
             try
-                {
-                    await cameraController.SendCommand("HEB,1");
-                    var receivedDataCamHEB = await cameraController.ReceiveData();
+            {
+                await cameraController.SendCommand("HEB,1");
+                var receivedDataCamHEB = await cameraController.ReceiveData();
                 if (!receivedDataCamHEB.Contains("HEB,1"))
                 {
                     MessageBox.Show("Calib Fail");
@@ -115,38 +115,38 @@ namespace WindowsFormsApp4
                     return;
                 }
 
-                    for (int i = 0; i < commandLinesRobot.Length - 1; i++)
+                for (int i = 0; i < commandLinesRobot.Length - 1; i++)
+                {
+                    await robotController.SendCommand(commandLinesRobot[i]);
+                    string receivedDataRobot = await robotController.ReceiveData();
+
+                    if (receivedDataRobot.Contains("OK"))
                     {
-                        await robotController.SendCommand(commandLinesRobot[i]);
-                        string receivedDataRobot = await robotController.ReceiveData();
+                        await cameraController.SendCommand(commandLinesCam[i]);
+                        string receivedDataCam = await cameraController.ReceiveData();
 
-                        if (receivedDataRobot.Contains("OK"))
+                        if (receivedDataCam.Contains("HE,1"))
                         {
-                            await cameraController.SendCommand(commandLinesCam[i]);
-                            string receivedDataCam = await cameraController.ReceiveData();
-
-                            if (receivedDataCam.Contains("HE,1"))
-                            {
-                                await Task.Delay(1000);
-                            }
-                            else
-                            {
-                                break;
-                            }
+                            await Task.Delay(1000);
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
-
-                    btnHE.Enabled = true;
-                    await cameraController.SendCommand("HEE,1");
-                    await cameraController.ReceiveData();
-                    MessageBox.Show("HE finish");
-
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
-                }
-           
+
+
+                await cameraController.SendCommand("HEE,1");
+                await cameraController.ReceiveData();
+                MessageBox.Show("HE finish");
+                btnHE.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi gửi và nhận dữ liệu từ camera hoặc robot: " + ex.Message);
+            }
+
         }
 
 

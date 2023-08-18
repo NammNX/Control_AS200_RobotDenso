@@ -12,143 +12,45 @@ namespace WindowsFormsApp4
     {
         private async Task MouseUpJoint()
         {
-            await robotController.SendCommand("OK,");
+            await robotController.SendCommand("OK");
             await UpdateCurrentPos();
             UpdateUIComponents();
         }
-        // --------J1---------
-        private async void btnJ1Plus_MouseDown(object sender, MouseEventArgs e)
-        {
 
-            await robotController.SendCommand("J1+,");
-        }
-        private async void btnJ1Plus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
+        //private async Task PerformJointOperation(string command)
+        //{
+        //    await robotController.SendCommand(command);
+        //}
 
-        private async void btnJ1Minus_MouseDown(object sender, MouseEventArgs e)
+        private async void HandleJointButton(Button button, string command)
         {
-            await robotController.SendCommand("J1-,");
+            await robotController.SendCommand(command);
         }
 
-        private async void btnJ1Minus_MouseUp(object sender, MouseEventArgs e)
+        
+        private void AssignJointButton(Button button, string command)
         {
-            await MouseUpJoint();
-        }
-        // --------J2---------
-        private async void btnJ2Plus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J2+,");
+            button.MouseDown += (sender, e) => HandleJointButton(button, command);
+            button.MouseUp += async (sender, e) => await MouseUpJoint();
         }
 
-        private async void btnJ2Plus_MouseUp(object sender, MouseEventArgs e)
+        private void RegisterJointButton()
         {
-            await MouseUpJoint();
+            AssignJointButton(btnJ1Plus, "J1+");
+            AssignJointButton(btnJ1Minus, "J1-");
+            AssignJointButton(btnJ2Plus, "J2+");
+            AssignJointButton(btnJ2Minus, "J2-");
+            AssignJointButton(btnJ3Plus, "J3+");
+            AssignJointButton(btnJ3Minus, "J3-");
+            AssignJointButton(btnJ4Plus, "J4+");
+            AssignJointButton(btnJ4Minus, "J4-");
+            AssignJointButton(btnJ5Plus, "J5+");
+            AssignJointButton(btnJ5Minus, "J5-");
+            AssignJointButton(btnJ6Plus, "J6+");
+            AssignJointButton(btnJ6Minus, "J6-");
+
         }
-        private async void btnJ2Minus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J2-,");
-        }
-
-        private async void btnJ2Minus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-        // --------J3---------
-
-        private async void btnJ3Plus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J3+,");
-        }
-
-        private async void btnJ3Plus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-        private async void btnJ3Minus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J3-,");
-        }
-
-        private async void btnJ3Minus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-        // --------J4---------
-        private async void btnJ4Plus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J4+,");
-        }
-
-
-
-        private async void btnJ4Plus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-
-
-        private async void btnJ4Minus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J4-,");
-        }
-
-        private async void btnJ4Minus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-        // --------J5---------
-
-        private async void btnJ5Plus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J5+,");
-        }
-
-
-
-        private async void btnJ5Plus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-        private async void btnJ5Minus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J5-,");
-        }
-
-
-
-        private async void btnJ5Minus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-        // --------J6---------
-
-        private async void btnJ6Plus_MouseDown(object sender, MouseEventArgs e)
-        {
-
-            await robotController.SendCommand("J6+,");
-        }
-
-        private async void btnJ6Plus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
-
-        private async void btnJ6Minus_MouseDown(object sender, MouseEventArgs e)
-        {
-            await robotController.SendCommand("J6-,");
-        }
-
-        private async void btnJ6Minus_MouseUp(object sender, MouseEventArgs e)
-        {
-            await MouseUpJoint();
-        }
+       
     }
 
     

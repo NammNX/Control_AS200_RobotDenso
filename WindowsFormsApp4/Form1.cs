@@ -23,35 +23,15 @@ namespace WindowsFormsApp4
         public Form1()
         {
             InitializeComponent();
-
+            RegisterJointButton();
+            RegisterSaveButton();
             this.FormClosing += Form1_FormClosing;
             cameraController = new CameraController();
             cameraController.TextReceivedData = txtReceivedData;
             robotController = new RobotController();
             robotController.TextReceivedData = txtReceivedData;
             robotController.TextReceivedData = txtReceiveDataRobot;
-            btnMoveP10.Tag = 0;
-            btnMoveP11.Tag = 1;
-            btnMoveP12.Tag = 2;
-            btnMoveP13.Tag = 3;
-            btnMoveP14.Tag = 4;
-            btnMoveP15.Tag = 5;
-            btnMoveP16.Tag = 6;
-            btnMoveP17.Tag = 7;
-            btnMoveP18.Tag = 8;
-            btnMoveP19.Tag = 9;
-
-            // Gán sự kiện click cho các nút di chuyển P
-            btnMoveP10.Click += MoveToPosition_Click;
-            btnMoveP11.Click += MoveToPosition_Click;
-            btnMoveP12.Click += MoveToPosition_Click;
-            btnMoveP13.Click += MoveToPosition_Click;
-            btnMoveP14.Click += MoveToPosition_Click;
-            btnMoveP15.Click += MoveToPosition_Click;
-            btnMoveP16.Click += MoveToPosition_Click;
-            btnMoveP17.Click += MoveToPosition_Click;
-            btnMoveP18.Click += MoveToPosition_Click;
-            btnMoveP19.Click += MoveToPosition_Click;
+           
 
         }
 
@@ -69,8 +49,8 @@ namespace WindowsFormsApp4
         {
             if (!IsconnectCam)
             {
-                string ipAddress = txtCamIp.Text;
-                int port = int.Parse(txtCamPort.Text);
+                var ipAddress = txtCamIp.Text;
+                var port = int.Parse(txtCamPort.Text);
                 cameraController.ConnectCamera(ipAddress, port);
                 if (cameraController.IsConnected)
                 {
@@ -96,8 +76,8 @@ namespace WindowsFormsApp4
         {
             if (!IsConnectRobot)
             {
-                string ipAddress = txtRobotIP.Text;
-                int port = int.Parse(txtRobotPort.Text);
+                var ipAddress = txtRobotIP.Text;
+                var port = int.Parse(txtRobotPort.Text);
                 robotController.ConnectRobot(ipAddress, port);
                 if (robotController.IsConnected)
                 {
@@ -122,7 +102,7 @@ namespace WindowsFormsApp4
         private async void btnSend_Click(object sender, EventArgs e)
         {
 
-            string command = txtCommand.Text.Trim();
+            var command = txtCommand.Text.Trim();
             await cameraController.SendCommand(command);
             await cameraController.ReceiveData();
 
@@ -140,7 +120,7 @@ namespace WindowsFormsApp4
 
         private async void btnSendRobot_Click(object sender, EventArgs e)
         {
-            string command = txtSendRobot.Text.Trim() + ",";
+            var command = txtSendRobot.Text.Trim();
             await robotController.SendCommand(command);
             await robotController.ReceiveData();
         }
@@ -152,11 +132,14 @@ namespace WindowsFormsApp4
             btnTrainVisionPoint.Enabled = true;
         }
 
-        
+        private async void btnReleaseTool_Click(object sender, EventArgs e)
+        {
+            await robotController.SendCommand("Nha");
+        }
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
-           await robotController.SendCommand("CRP,");
+           await robotController.SendCommand("CRP");
            await UpdateCurrentPos();
 
             txtMinX.Text = robotController.x;
@@ -197,7 +180,7 @@ namespace WindowsFormsApp4
 
         private async void btnGetCurPos2_Click(object sender, EventArgs e)
         {
-            await robotController.SendCommand("CRP,");
+            await robotController.SendCommand("CRP");
             await UpdateCurrentPos();
             UpdateUIComponents();
         }
