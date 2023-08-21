@@ -112,6 +112,7 @@ namespace WindowsFormsApp4
 
        
         private bool isToolOn = false;
+        private bool isRelease = false;
 
         private async void btnOnOffTool_Click(object sender, EventArgs e)
         {
@@ -137,6 +138,30 @@ namespace WindowsFormsApp4
 
             }
 
+        }
+        private async void btnReleaseTool_Click(object sender, EventArgs e)
+        {
+            if (!robotController.IsConnected)
+            {
+                MessageBox.Show("Robot chưa kết nối");
+                return;
+            }
+
+            if (!isRelease)
+            {
+                await robotController.SendCommand("Nha");
+                isRelease = true;
+                btnReleaseTool.Text = "OFF Release";
+                btnReleaseTool.BackColor = Color.Red;
+            }
+            else
+            {
+                await robotController.SendCommand("OffNha");
+                isRelease = false;
+                btnReleaseTool.Text = "Release";
+                btnReleaseTool.BackColor = Color.Green;
+
+            }
         }
 
         private async void btnTestRobot_Click(object sender, EventArgs e)

@@ -73,6 +73,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnLoadPosFromPendant = new System.Windows.Forms.Button();
             this.btnReleaseTool = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnCleanDataRobot = new System.Windows.Forms.Button();
@@ -637,6 +638,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnLoadPosFromPendant);
             this.tabPage2.Controls.Add(this.btnReleaseTool);
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.btnCleanDataRobot);
@@ -734,14 +736,26 @@
             this.tabPage2.Text = "Train Robot";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnLoadPosFromPendant
+            // 
+            this.btnLoadPosFromPendant.BackColor = System.Drawing.Color.IndianRed;
+            this.btnLoadPosFromPendant.Location = new System.Drawing.Point(608, 400);
+            this.btnLoadPosFromPendant.Name = "btnLoadPosFromPendant";
+            this.btnLoadPosFromPendant.Size = new System.Drawing.Size(84, 49);
+            this.btnLoadPosFromPendant.TabIndex = 30;
+            this.btnLoadPosFromPendant.Text = "Load Pos From Pendant";
+            this.btnLoadPosFromPendant.UseVisualStyleBackColor = false;
+            this.btnLoadPosFromPendant.Click += new System.EventHandler(this.btnLoadPosFromPendant_Click);
+            // 
             // btnReleaseTool
             // 
+            this.btnReleaseTool.BackColor = System.Drawing.Color.Green;
             this.btnReleaseTool.Location = new System.Drawing.Point(420, 145);
             this.btnReleaseTool.Name = "btnReleaseTool";
             this.btnReleaseTool.Size = new System.Drawing.Size(74, 36);
             this.btnReleaseTool.TabIndex = 29;
             this.btnReleaseTool.Text = "Release";
-            this.btnReleaseTool.UseVisualStyleBackColor = true;
+            this.btnReleaseTool.UseVisualStyleBackColor = false;
             this.btnReleaseTool.Click += new System.EventHandler(this.btnReleaseTool_Click);
             // 
             // label14
@@ -1696,6 +1710,7 @@
         private System.Windows.Forms.Button btnMoveP16;
         private System.Windows.Forms.Button btnMoveP15;
         private System.Windows.Forms.Button btnReleaseTool;
+        private System.Windows.Forms.Button btnLoadPosFromPendant;
     }
 }
 

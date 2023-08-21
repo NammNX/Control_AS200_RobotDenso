@@ -127,8 +127,8 @@ namespace WindowsFormsApp4
             }    
                 try
                 {
-                byte[] buffer = new byte[1024];
-                string receivedDataRobot = await ReceiveData();
+                
+                var receivedDataRobot = await ReceiveData();
 
                     string[] commandLinesRobot = receivedDataRobot.Split(' ');
                     if (commandLinesRobot.Length >= 6)
@@ -145,7 +145,7 @@ namespace WindowsFormsApp4
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể gửi lệnh đến ROBOT. Lỗi: " + ex.Message);
+                    MessageBox.Show("Không thể nhận data từ ROBOT. Lỗi: " + ex.Message);
                 }
            
         }

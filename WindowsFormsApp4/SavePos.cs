@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace WindowsFormsApp4
 {
     public partial class Form1
     {
-        
+
         private string[] X = new string[10];
         private string[] Y = new string[10];
         private string[] Z = new string[10];
@@ -21,11 +23,11 @@ namespace WindowsFormsApp4
 
         public async Task SavePos()
         {
-            
+
             var Pos = cbPos.Text;
 
-           
-            if (int.TryParse(Pos.Substring(1), out int posIndex) )
+
+            if (int.TryParse(Pos.Substring(1), out int posIndex))
             {
                 int arrayIndex = posIndex - 10;
 
@@ -42,8 +44,9 @@ namespace WindowsFormsApp4
                 await robotController.SendCommand(Pos);
                 await Task.Delay(30);
                 await robotController.SendCommand(labelText);
-;            }    
-       
+                ;
+            }
+
         }
         private async void MoveToPosition_Click(object sender, EventArgs e, int index)
         {
@@ -56,7 +59,7 @@ namespace WindowsFormsApp4
                 return;
             }
 
-            await robotController.MoveRobot(X[index],Y[index],Z[index],RX[index],RY[index],RZ[index],FIG[index]);
+            await robotController.MoveRobot(X[index], Y[index], Z[index], RX[index], RY[index], RZ[index], FIG[index]);
             x = X[index];
             y = Y[index];
             z = Z[index];
@@ -78,27 +81,7 @@ namespace WindowsFormsApp4
                     button.Click += (sender, e) => MoveToPosition_Click(sender, e, i - 10);
                 }
             }
-            //btnMoveP10.Tag = 0;
-            //btnMoveP11.Tag = 1;
-            //btnMoveP12.Tag = 2;
-            //btnMoveP13.Tag = 3;
-            //btnMoveP14.Tag = 4;
-            //btnMoveP15.Tag = 5;
-            //btnMoveP16.Tag = 6;
-            //btnMoveP17.Tag = 7;
-            //btnMoveP18.Tag = 8;
-            //btnMoveP19.Tag = 9;
 
-            //btnMoveP10.Click += MoveToPosition_Click;
-            //btnMoveP11.Click += MoveToPosition_Click;
-            //btnMoveP12.Click += MoveToPosition_Click;
-            //btnMoveP13.Click += MoveToPosition_Click;
-            //btnMoveP14.Click += MoveToPosition_Click;
-            //btnMoveP15.Click += MoveToPosition_Click;
-            //btnMoveP16.Click += MoveToPosition_Click;
-            //btnMoveP17.Click += MoveToPosition_Click;
-            //btnMoveP18.Click += MoveToPosition_Click;
-            //btnMoveP19.Click += MoveToPosition_Click;
         }
 
         private async void btnSavePos_Click(object sender, EventArgs e)
@@ -109,9 +92,89 @@ namespace WindowsFormsApp4
                 return;
             }
             await SavePos();
+
+        }
+        // Lưu trạng thái vào tệp tin
+        //private void SaveStateToFile()
+        //{
+        //    var state = new
+        //    {
+        //        X = X,
+        //        Y = Y,
+        //        Z = Z,
+        //        RX = RX,
+        //        RY = RY,
+        //        RZ = RZ,
+        //        FIG = FIG
+        //    };
+
+        //    string json = JsonConvert.SerializeObject(state);
+        //    File.WriteAllText("robot_state.json", json);
+        //}
+
+        //// Khôi phục trạng thái từ tệp tin khi ứng dụng khởi động
+        //private void RestoreStateFromFile()
+        //{
+        //    if (File.Exists("robot_state.json"))
+        //    {
+        //        string json = File.ReadAllText("robot_state.json");
+        //        var state = JsonConvert.DeserializeObject<dynamic>(json);
+
+        //        X = state.X.ToObject<string[]>();
+        //        Y = state.Y.ToObject<string[]>();
+        //        Z = state.Z.ToObject<string[]>();
+        //        RX = state.RX.ToObject<string[]>();
+        //        RY = state.RY.ToObject<string[]>();
+        //        RZ = state.RZ.ToObject<string[]>();
+        //        FIG = state.FIG.ToObject<string[]>();
+        //    }
+        //    UpdateLabelText();
+        //}
+        private void UpdateLabelText()
+        {
+            for (int i = 0; i < X.Length; i++)
+            {
+                var labelText = $"{X[i]},{Y[i]},{Z[i]},{RX[i]},{RY[i]},{RZ[i]},{FIG[i]}";
+                Controls.Find($"lbP{i + 10}", true)[0].Text = labelText;
+            }
+        }
+        string dataReceive = "";
+        private async void btnLoadPosFromPendant_Click(object sender, EventArgs e)
+        {
+            await robotController.SendCommand("LoadPos");
+            dataReceive = await robotController.ReceiveData();
+            LoadPos();
+
         }
 
+        private void LoadPos()
+        {
+            string[] positionData = dataReceive.Split(' ');
+            if (positionData.Length < 70)
+            { return; }
+            for (int i = 0; i < 10; i++)
+            {
+                int startIndex = i * 7;
 
+                X[i] = positionData[startIndex];
+                Y[i] = positionData[startIndex + 1];
+                Z[i] = positionData[startIndex + 2];
+                RX[i] = positionData[startIndex + 3];
+                RY[i] = positionData[startIndex + 4];
+                RZ[i] = positionData[startIndex + 5];
+                FIG[i] = positionData[startIndex + 6];
+            }
+            UpdateLabelText();
 
+        }
     }
+
 }
+
+
+
+
+
+
+
+

@@ -25,6 +25,8 @@ namespace WindowsFormsApp4
             InitializeComponent();
             RegisterJointButton();
             RegisterSaveButton();
+            RegisterXYZButton();
+            //RestoreStateFromFile();
             this.FormClosing += Form1_FormClosing;
             cameraController = new CameraController();
             cameraController.TextReceivedData = txtReceivedData;
@@ -40,6 +42,7 @@ namespace WindowsFormsApp4
             if (!cameraController.IsConnected && !robotController.IsConnected) { return; }
             robotController.DisConnectRobot();
             cameraController.DisconnectCamera();
+            //SaveStateToFile();
         }
 
         private bool IsconnectCam = false;
@@ -132,10 +135,7 @@ namespace WindowsFormsApp4
             btnTrainVisionPoint.Enabled = true;
         }
 
-        private async void btnReleaseTool_Click(object sender, EventArgs e)
-        {
-            await robotController.SendCommand("Nha");
-        }
+        
 
         private async void btnGetCurPos_Click(object sender, EventArgs e) // Lấy current pos của robot
         {
