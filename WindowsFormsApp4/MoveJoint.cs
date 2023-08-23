@@ -17,11 +17,6 @@ namespace WindowsFormsApp4
             UpdateUIComponents();
         }
 
-        //private async Task PerformJointOperation(string command)
-        //{
-        //    await robotController.SendCommand(command);
-        //}
-
         private async void HandleJointButton(Button button, string command)
         {
             await robotController.SendCommand(command);

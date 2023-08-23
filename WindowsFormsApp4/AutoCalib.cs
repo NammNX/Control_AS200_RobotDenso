@@ -75,6 +75,7 @@ namespace WindowsFormsApp4
             }
             btnAutoCalib.Enabled = false;
             await robotController.SendCommand("CRP");
+            await Task.Delay(300);
             await UpdateCurrentPos();
             var nextPosForCam = await AutoHandEyeBegin();
             if (!isFeature)

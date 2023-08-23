@@ -138,19 +138,14 @@ namespace WindowsFormsApp4
                 Controls.Find($"lbP{i + 10}", true)[0].Text = labelText;
             }
         }
-        string dataReceive = "";
-        private async void btnLoadPosFromPendant_Click(object sender, EventArgs e)
+
+        private async Task LoadPos()
         {
+
             await robotController.SendCommand("LoadPos");
-            dataReceive = await robotController.ReceiveData();
-            LoadPos();
-
-        }
-
-        private void LoadPos()
-        {
+            var dataReceive = await robotController.ReceiveData();
             string[] positionData = dataReceive.Split(' ');
-            if (positionData.Length < 70)
+            if (positionData.Length != 70)
             { return; }
             for (int i = 0; i < 10; i++)
             {

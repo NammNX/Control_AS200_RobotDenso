@@ -75,7 +75,7 @@ namespace WindowsFormsApp4
             }
         }
 
-        private void btnRobotConnect_Click(object sender, EventArgs e)
+        private async void btnRobotConnect_Click(object sender, EventArgs e)
         {
             if (!IsConnectRobot)
             {
@@ -87,6 +87,7 @@ namespace WindowsFormsApp4
                     btnRobotConnect.Text = "Disconnect";
                     btnRobotConnect.BackColor = Color.Red;
                     IsConnectRobot = true;
+                    await LoadPos();
                 }
                 else
                 {

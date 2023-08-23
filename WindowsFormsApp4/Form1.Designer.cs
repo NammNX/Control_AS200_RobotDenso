@@ -73,7 +73,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnLoadPosFromPendant = new System.Windows.Forms.Button();
             this.btnReleaseTool = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnCleanDataRobot = new System.Windows.Forms.Button();
@@ -638,7 +637,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnLoadPosFromPendant);
             this.tabPage2.Controls.Add(this.btnReleaseTool);
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.btnCleanDataRobot);
@@ -735,17 +733,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Train Robot";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnLoadPosFromPendant
-            // 
-            this.btnLoadPosFromPendant.BackColor = System.Drawing.Color.IndianRed;
-            this.btnLoadPosFromPendant.Location = new System.Drawing.Point(608, 400);
-            this.btnLoadPosFromPendant.Name = "btnLoadPosFromPendant";
-            this.btnLoadPosFromPendant.Size = new System.Drawing.Size(84, 49);
-            this.btnLoadPosFromPendant.TabIndex = 30;
-            this.btnLoadPosFromPendant.Text = "Load Pos From Pendant";
-            this.btnLoadPosFromPendant.UseVisualStyleBackColor = false;
-            this.btnLoadPosFromPendant.Click += new System.EventHandler(this.btnLoadPosFromPendant_Click);
             // 
             // btnReleaseTool
             // 
@@ -886,7 +873,7 @@
             // 
             // btnTestRobot
             // 
-            this.btnTestRobot.Location = new System.Drawing.Point(490, 55);
+            this.btnTestRobot.Location = new System.Drawing.Point(498, 55);
             this.btnTestRobot.Name = "btnTestRobot";
             this.btnTestRobot.Size = new System.Drawing.Size(75, 35);
             this.btnTestRobot.TabIndex = 21;
@@ -1150,7 +1137,7 @@
             // 
             // btnTrainVisionPoint
             // 
-            this.btnTrainVisionPoint.Location = new System.Drawing.Point(474, 13);
+            this.btnTrainVisionPoint.Location = new System.Drawing.Point(477, 13);
             this.btnTrainVisionPoint.Name = "btnTrainVisionPoint";
             this.btnTrainVisionPoint.Size = new System.Drawing.Size(75, 35);
             this.btnTrainVisionPoint.TabIndex = 12;
@@ -1342,7 +1329,7 @@
             // 
             // btnGetCurPos2
             // 
-            this.btnGetCurPos2.Location = new System.Drawing.Point(411, 13);
+            this.btnGetCurPos2.Location = new System.Drawing.Point(419, 13);
             this.btnGetCurPos2.Name = "btnGetCurPos2";
             this.btnGetCurPos2.Size = new System.Drawing.Size(57, 34);
             this.btnGetCurPos2.TabIndex = 4;
@@ -1710,7 +1697,6 @@
         private System.Windows.Forms.Button btnMoveP16;
         private System.Windows.Forms.Button btnMoveP15;
         private System.Windows.Forms.Button btnReleaseTool;
-        private System.Windows.Forms.Button btnLoadPosFromPendant;
     }
 }
 
