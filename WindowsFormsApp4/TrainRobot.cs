@@ -194,7 +194,7 @@ namespace WindowsFormsApp4
             Camrespon = Camrespon.Substring(5).Replace("\r\n", "");
             Camrespon = ChangeDataFromCamToPosRobot(Camrespon); 
             var CommandPosRobot = $"{Camrespon},{fig}";
-            await robotController.SendCommand("ROBOTMOVE");
+            await robotController.SendCommand("TESTPICK");
             await Task.Delay(20);
             await robotController.SendCommand(CommandPosRobot);
         }
